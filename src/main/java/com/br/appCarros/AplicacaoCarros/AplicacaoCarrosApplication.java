@@ -1,5 +1,6 @@
-package com.br.appCarros.AplicacaoCarros.application;
+package com.br.appCarros.AplicacaoCarros;
 
+import com.br.appCarros.AplicacaoCarros.application.Main;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
