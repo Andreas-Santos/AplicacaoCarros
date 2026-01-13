@@ -1,144 +1,52 @@
 package com.br.appCarros.AplicacaoCarros.models;
 
-import com.br.appCarros.AplicacaoCarros.models.enums.VehicleCategory;
+import jakarta.persistence.*;
 
-import java.time.LocalDate;
-import java.util.List;
-
+@Entity
+@Table(name = "veículos")
 public class Vehicle {
-    private VehicleCategory vehicleCategory;
-    private int producerId;
-    private String producer;
-    private int modelId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "marca_id")
+    private Integer brandId;
+
+    @Column(name = "marca")
+    private String brand;
+
+    @Column(name = "modelo_id")
+    private Integer modelId;
+
+    @Column(name = "modelo")
     private String model;
-    private int producedYear;
-    private int modelYearId;
-    private int modelYear;
-    private String plate;
-    private LocalDate registerDate;
-    private double fipeValue;
-    private double finalValue;
-    private double buyValue;
-    private List<Spent> spents;
 
-    public Vehicle(String producer, String model, String plate, int producedYear, int modelYear) {
-        this.producer = producer;
-        this.model = model;
-        this.plate = plate;
-        this.registerDate = LocalDate.now();
-        this.producedYear = producedYear;
-        this.modelYear = modelYear;
-    }
+    @Column(name = "ano_id")
+    private String yearId;
 
-    public VehicleCategory getVehicleCategory() {
-        return vehicleCategory;
-    }
+    @Column(name = "ano_modelo")
+    private String modelYear;
 
-    public void setVehicleCategory(VehicleCategory vehicleCategory) {
-        this.vehicleCategory = vehicleCategory;
-    }
+    @Column(name = "combustivel")
+    private String fuel;
 
-    public int getProducerId() {
-        return producerId;
-    }
+    @Column(name = "preco")
+    private String price;
 
-    public void setProducerId(int producerId) {
-        this.producerId = producerId;
-    }
+    @Column(name = "referencia_mes")
+    private String referenceMonth;
 
-    public String getProducer() {
-        return producer;
-    }
-
-    public void setProducer(String producer) {
-        this.producer = producer;
-    }
-
-    public int getModelId() {
-        return modelId;
-    }
-
-    public void setModelId(int modelId) {
+    public Vehicle(Integer brandId, String brand, Integer modelId, String model, String yearId, String modelYear,
+                   String fuel, String price, String referenceMonth) {
+        this.brandId = brandId;
+        this.brand = brand;
         this.modelId = modelId;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
         this.model = model;
-    }
-
-    public int getProducedYear() {
-        return producedYear;
-    }
-
-    public void setProducedYear(int producedYear) {
-        this.producedYear = producedYear;
-    }
-
-    public int getModelYearId() {
-        return modelYearId;
-    }
-
-    public void setModelYearId(int modelYearId) {
-        this.modelYearId = modelYearId;
-    }
-
-    public int getModelYear() {
-        return modelYear;
-    }
-
-    public void setModelYear(int modelYear) {
+        this.yearId = yearId;
         this.modelYear = modelYear;
+        this.fuel = fuel;
+        this.price = price;
+        this.referenceMonth = referenceMonth;
     }
 
-    public String getPlate() {
-        return plate;
-    }
-
-    public void setPlate(String plate) {
-        this.plate = plate;
-    }
-
-    public LocalDate getRegisterDate() {
-        return registerDate;
-    }
-
-    public void setRegisterDate(LocalDate registerDate) {
-        this.registerDate = registerDate;
-    }
-
-    public double getFipeValue() {
-        return fipeValue;
-    }
-
-    public void setFipeValue(double fipeValue) {
-        this.fipeValue = fipeValue;
-    }
-
-    public double getFinalValue() {
-        return finalValue;
-    }
-
-    public void setFinalValue(double finalValue) {
-        this.finalValue = finalValue;
-    }
-
-    public double getBuyValue() {
-        return buyValue;
-    }
-
-    public void setBuyValue(double buyValue) {
-        this.buyValue = buyValue;
-    }
-
-    public List<Spent> getSpents() {
-        return spents;
-    }
-
-    public void setSpents(List<Spent> spents) {
-        this.spents = spents;
-    }
 }

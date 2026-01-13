@@ -1,13 +1,16 @@
 package com.br.appCarros.AplicacaoCarros.application;
 
+import com.br.appCarros.AplicacaoCarros.models.Vehicle;
 import com.br.appCarros.AplicacaoCarros.models.records.BrandData;
 import com.br.appCarros.AplicacaoCarros.models.records.ModelData;
 import com.br.appCarros.AplicacaoCarros.models.records.VehicleFipeData;
 import com.br.appCarros.AplicacaoCarros.models.records.YearData;
+import com.br.appCarros.AplicacaoCarros.repositorys.VehicleRepository;
 import com.br.appCarros.AplicacaoCarros.services.ConvertData;
 import com.br.appCarros.AplicacaoCarros.services.FipeApi;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Optional;
 import java.util.Scanner;
@@ -18,6 +21,11 @@ public class Main {
     private FipeApi fipeApi = new FipeApi();
     private ConvertData dataConverter = new ConvertData();
     private Scanner scan = new Scanner(System.in);
+    private VehicleRepository vehicleRepository;
+
+    public Main(VehicleRepository vehicleRepository) {
+        this.vehicleRepository = vehicleRepository;
+    }
 
     public void showMenu() {
         var jsonBrands = fipeApi.getBrands("cars");
@@ -77,5 +85,24 @@ public class Main {
                 "\nPreço fipe: " + fipe.price() +
                 "\nMês de referência: " + fipe.referenceMonth()
         );
+
+        Vehicle vehicle = new Vehicle(
+                brandSearch,
+                fipe.brand(),
+                modelSearch,
+                fipe.model(),
+                yearSearch,
+                fipe.modelYear(),
+                fipe.fuel(),
+                fipe.price(),
+                fipe.referenceMonth()
+        );
+
+        try {
+            vehicleRepository.save(vehicle);
+            System.out.println("Veículo cadastrado com sucesso!");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

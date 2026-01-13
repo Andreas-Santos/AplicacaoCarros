@@ -18,15 +18,15 @@ public class Salesman {
     @Column(name = "data_inicial")
     private LocalDate initialDate;
 
-//    @OneToMany(mappedBy = "salesman")
-//    private List<Deal> deals;
+    @Transient
+    private List<Deal> deals;
 
     public Salesman() {}
 
     public Salesman(String name, List<Deal> deals) {
         this.name = name;
         this.initialDate = LocalDate.now();
-//        this.deals = deals;
+        this.deals = deals;
     }
 
     public String getName() {
@@ -45,11 +45,11 @@ public class Salesman {
         this.initialDate = initialDate;
     }
 
-//    public List<Deal> getDeals() {
-//        return deals;
-//    }
-//
-//    public void setDeals(List<Deal> deals) {
-//        this.deals = deals;
-//    }
+    public List<Deal> getDeals() {
+        return deals;
+    }
+
+    public void setDeals(List<Deal> deals) {
+        this.deals = deals;
+    }
 }
