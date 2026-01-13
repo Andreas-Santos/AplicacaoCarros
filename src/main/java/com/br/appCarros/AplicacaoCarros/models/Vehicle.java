@@ -1,6 +1,7 @@
 package com.br.appCarros.AplicacaoCarros.models;
 
 import jakarta.persistence.*;
+import org.springframework.data.jpa.domain.AbstractAuditable_;
 
 @Entity
 @Table(name = "veículos")
@@ -36,6 +37,8 @@ public class Vehicle {
     @Column(name = "referencia_mes")
     private String referenceMonth;
 
+    public Vehicle() {}
+
     public Vehicle(Integer brandId, String brand, Integer modelId, String model, String yearId, String modelYear,
                    String fuel, String price, String referenceMonth) {
         this.brandId = brandId;
@@ -49,4 +52,12 @@ public class Vehicle {
         this.referenceMonth = referenceMonth;
     }
 
+    @Override
+    public String toString() {
+        return "Marca: " + this.brand + "\n" +
+                "Modelo: " + this.model + "\n" +
+                "Ano: " + this.modelYear + "\n" +
+                "Combustível: " + this.fuel + "\n" +
+                "Preço: " + this.price + "\n";
+    }
 }

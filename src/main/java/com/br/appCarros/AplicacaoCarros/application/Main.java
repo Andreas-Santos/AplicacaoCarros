@@ -104,5 +104,9 @@ public class Main {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
+        System.out.println("Carros salvos no banco:");
+        vehicleRepository.findAll().stream()
+                .forEach(System.out::println);
     }
 }
