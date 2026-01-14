@@ -15,7 +15,6 @@ import com.br.appCarros.AplicacaoCarros.service.FipeApi;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -45,14 +44,18 @@ public class Main {
         System.out.println("Bem vindo ao Sistemas de veículos!");
 
         while(menuChoose != 0) {
-            System.out.println("Escolha a opção desejada:");
-            System.out.println("1 - Cadastrar Cliente");
-            System.out.println("2 - Listar Clientes");
-            System.out.println("3 - Cadastrar Veículo");
-            System.out.println("7 - Cadastrar Vendedor");
-            System.out.println("8 - Listar Vendedores");
-            System.out.println("9 - Buscar vendedor");
-            System.out.println("0 - Sair");
+            System.out.println(
+                """
+                    Escolha a opção desejada:
+                    1 - Cadastrar Cliente
+                    2 - Listar Clientes
+                    3 - Cadastrar Veículo
+                    4 - Listar Veículos
+                    7 - Cadastrar Vendedor
+                    8 - Listar Vendedores
+                    9 - Buscar vendedor
+                    0 - Sair
+                """);
             menuChoose = scan.nextInt();
             scan.nextLine();
 
@@ -66,6 +69,9 @@ public class Main {
                 case 3:
                     registerVehicle();
                     break;
+                case 4:
+                    getVehicles();
+                    break;
                 case 7:
                     registerSalesman();
                     break;
@@ -78,8 +84,18 @@ public class Main {
                 case 0:
                     System.out.println("Sistema encerrado!");
                     break;
+                default:
+                    System.out.println("O número digitado é inválido!");
+                    break;
             }
         }
+    }
+
+    private void getVehicles() {
+        List<Vehicle> vehicles = vehicleRepository.findAll();
+
+        vehicles.stream().
+                forEach(v -> System.out.println(v));
     }
 
     private void registerVehicle() {
