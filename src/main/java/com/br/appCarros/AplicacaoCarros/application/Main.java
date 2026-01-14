@@ -10,7 +10,6 @@ import com.br.appCarros.AplicacaoCarros.services.ConvertData;
 import com.br.appCarros.AplicacaoCarros.services.FipeApi;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Optional;
 import java.util.Scanner;

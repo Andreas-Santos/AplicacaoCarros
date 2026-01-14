@@ -1,12 +1,27 @@
 package com.br.appCarros.AplicacaoCarros.models;
 
+import jakarta.persistence.*;
+
 import java.util.List;
 
+@Entity
+@Table(name = "Clientes")
 public class Costumer {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "nome")
     private String name;
+
     private String cpf;
+
     private String email;
+
+    @Column(name = "numeroTelefone")
     private String phoneNumber;
+
+    @OneToMany(mappedBy = "costumer")
     private List<Deal> deals;
 
     public Costumer() {}

@@ -18,7 +18,7 @@ public class Salesman {
     @Column(name = "data_inicial")
     private LocalDate initialDate;
 
-    @Transient
+    @ManyToMany(mappedBy = "salesmanList")
     private List<Deal> deals;
 
     public Salesman() {}

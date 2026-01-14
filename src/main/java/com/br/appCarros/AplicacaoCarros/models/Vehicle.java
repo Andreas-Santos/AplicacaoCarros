@@ -37,6 +37,9 @@ public class Vehicle {
     @Column(name = "referencia_mes")
     private String referenceMonth;
 
+    @OneToOne
+    private Deal deal;
+
     public Vehicle() {}
 
     public Vehicle(Integer brandId, String brand, Integer modelId, String model, String yearId, String modelYear,
