@@ -1,12 +1,14 @@
 package com.br.appCarros.AplicacaoCarros.application;
 
 import com.br.appCarros.AplicacaoCarros.model.Costumer;
+import com.br.appCarros.AplicacaoCarros.model.Salesman;
 import com.br.appCarros.AplicacaoCarros.model.Vehicle;
 import com.br.appCarros.AplicacaoCarros.model.record.BrandData;
 import com.br.appCarros.AplicacaoCarros.model.record.ModelData;
 import com.br.appCarros.AplicacaoCarros.model.record.VehicleFipeData;
 import com.br.appCarros.AplicacaoCarros.model.record.YearData;
 import com.br.appCarros.AplicacaoCarros.repository.CostumerRepository;
+import com.br.appCarros.AplicacaoCarros.repository.SalesmanRepository;
 import com.br.appCarros.AplicacaoCarros.repository.VehicleRepository;
 import com.br.appCarros.AplicacaoCarros.service.ConvertData;
 import com.br.appCarros.AplicacaoCarros.service.FipeApi;
@@ -26,10 +28,13 @@ public class Main {
     private Scanner scan = new Scanner(System.in);
     private VehicleRepository vehicleRepository;
     private CostumerRepository costumerRepository;
+    private SalesmanRepository salesmanRepository;
 
-    public Main(VehicleRepository vehicleRepository, CostumerRepository costumerRepository) {
+    public Main(VehicleRepository vehicleRepository, CostumerRepository costumerRepository,
+                SalesmanRepository salesmanRepository) {
         this.vehicleRepository = vehicleRepository;
         this.costumerRepository = costumerRepository;
+        this.salesmanRepository = salesmanRepository;
     }
 
     public void showMenu() {
@@ -41,6 +46,9 @@ public class Main {
             System.out.println("Escolha a opção desejada:");
             System.out.println("1 - Cadastrar Cliente");
             System.out.println("2 - Listar Clientes");
+            System.out.println("7 - Cadastrar Vendedor");
+            System.out.println("8 - Listar Vendedores");
+            System.out.println("9 - Buscar vendedor");
             System.out.println("0 - Sair");
             menuChoose = scan.nextInt();
             scan.nextLine();
@@ -52,12 +60,31 @@ public class Main {
                 case 2:
                     getCostumers();
                     break;
+                case 7:
+                    registerSalesman();
+                    break;
+                case 8:
+                    getSalesman();
+                    break;
+                case 9:
+                    searchSalesman();
+                    break;
                 case 0:
                     System.out.println("Sistema encerrado!");
                     break;
             }
         }
     }
+
+    private void searchSalesman() {
+        System.out.println("Digite o nome do vendedor que quer buscar");
+        String name = scan.nextLine();
+        List<Salesman> salesman = new ArrayList<>();
+
+        salesman = salesmanRepository.findByNameContainingIgnoreCase(name);
+        System.out.println(salesman);
+    }
+
 
     private void getCostumers() {
         List<Costumer> costumers = new ArrayList<>();
@@ -88,6 +115,29 @@ public class Main {
             System.out.println("Cliente cadastrado com sucesso!");
         }catch (Exception e) {
             System.out.println("Erro ao cadastar cliente - Erro: " + e.getMessage());
+        }
+    }
+
+    private void getSalesman() {
+        List<Salesman> salesmanList = new ArrayList<>();
+        salesmanList = salesmanRepository.findAll();
+
+        salesmanList.stream()
+                .forEach(s -> System.out.println(s));
+    }
+
+    private void registerSalesman() {
+        String name;
+
+        System.out.println("Digite o nome do vendedor");
+        name = scan.nextLine();
+
+        Salesman salesman = new Salesman(name, null);
+        try {
+            salesmanRepository.save(salesman);
+            System.out.println("Vendedor cadastrado com sucesso!");
+        } catch (Exception e) {
+            System.out.println("Erro ao cadastrar vendedor - Erro: " + e.getMessage());
         }
     }
 

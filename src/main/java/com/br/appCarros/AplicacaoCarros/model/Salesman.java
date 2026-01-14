@@ -12,10 +12,10 @@ public class Salesman {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "nome")
+    @Column(name = "nome", nullable = false)
     private String name;
 
-    @Column(name = "data_inicial")
+    @Column(name = "data_inicial", nullable = false)
     private LocalDate initialDate;
 
     @ManyToMany(mappedBy = "salesmanList")
@@ -51,5 +51,11 @@ public class Salesman {
 
     public void setDeals(List<Deal> deals) {
         this.deals = deals;
+    }
+
+    @Override
+    public String toString() {
+        return "Nome: " + name + "\n" +
+                "Data inicial: " + initialDate + "\n";
     }
 }
