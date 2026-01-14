@@ -1,16 +1,20 @@
 package com.br.appCarros.AplicacaoCarros.application;
 
-import com.br.appCarros.AplicacaoCarros.models.Vehicle;
-import com.br.appCarros.AplicacaoCarros.models.records.BrandData;
-import com.br.appCarros.AplicacaoCarros.models.records.ModelData;
-import com.br.appCarros.AplicacaoCarros.models.records.VehicleFipeData;
-import com.br.appCarros.AplicacaoCarros.models.records.YearData;
-import com.br.appCarros.AplicacaoCarros.repositorys.VehicleRepository;
-import com.br.appCarros.AplicacaoCarros.services.ConvertData;
-import com.br.appCarros.AplicacaoCarros.services.FipeApi;
+import com.br.appCarros.AplicacaoCarros.model.Costumer;
+import com.br.appCarros.AplicacaoCarros.model.Vehicle;
+import com.br.appCarros.AplicacaoCarros.model.record.BrandData;
+import com.br.appCarros.AplicacaoCarros.model.record.ModelData;
+import com.br.appCarros.AplicacaoCarros.model.record.VehicleFipeData;
+import com.br.appCarros.AplicacaoCarros.model.record.YearData;
+import com.br.appCarros.AplicacaoCarros.repository.CostumerRepository;
+import com.br.appCarros.AplicacaoCarros.repository.VehicleRepository;
+import com.br.appCarros.AplicacaoCarros.service.ConvertData;
+import com.br.appCarros.AplicacaoCarros.service.FipeApi;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -21,12 +25,73 @@ public class Main {
     private ConvertData dataConverter = new ConvertData();
     private Scanner scan = new Scanner(System.in);
     private VehicleRepository vehicleRepository;
+    private CostumerRepository costumerRepository;
 
-    public Main(VehicleRepository vehicleRepository) {
+    public Main(VehicleRepository vehicleRepository, CostumerRepository costumerRepository) {
         this.vehicleRepository = vehicleRepository;
+        this.costumerRepository = costumerRepository;
     }
 
     public void showMenu() {
+        int menuChoose = -1;
+
+        System.out.println("Bem vindo ao Sistemas de veículos!");
+
+        while(menuChoose != 0) {
+            System.out.println("Escolha a opção desejada:");
+            System.out.println("1 - Cadastrar Cliente");
+            System.out.println("2 - Listar Clientes");
+            System.out.println("0 - Sair");
+            menuChoose = scan.nextInt();
+            scan.nextLine();
+
+            switch (menuChoose) {
+                case 1:
+                    registerCostumer();
+                    break;
+                case 2:
+                    getCostumers();
+                    break;
+                case 0:
+                    System.out.println("Sistema encerrado!");
+                    break;
+            }
+        }
+    }
+
+    private void getCostumers() {
+        List<Costumer> costumers = new ArrayList<>();
+        costumers = costumerRepository.findAll();
+
+        costumers.stream()
+                .forEach(c -> System.out.println(c));
+    }
+
+    private void registerCostumer() {
+        String name;
+        String cpf;
+        String email;
+        String phoneNumber;
+
+        System.out.println("Digite o nome do cliente:");
+        name = scan.nextLine();
+        System.out.println("Digite o cpf do cliente:");
+        cpf = scan.nextLine();
+        System.out.println("Digite o email do cliente:");
+        email = scan.nextLine();
+        System.out.println("Digite o número do telefone:");
+        phoneNumber = scan.nextLine();
+
+        Costumer costumer = new Costumer(name, cpf, email, phoneNumber, null);
+        try{
+            costumerRepository.save(costumer);
+            System.out.println("Cliente cadastrado com sucesso!");
+        }catch (Exception e) {
+            System.out.println("Erro ao cadastar cliente - Erro: " + e.getMessage());
+        }
+    }
+
+    public void showMore() {
         var jsonBrands = fipeApi.getBrands("cars");
         var brands = dataConverter.getList(jsonBrands, BrandData.class);
 

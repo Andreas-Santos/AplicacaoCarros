@@ -1,6 +1,6 @@
-package com.br.appCarros.AplicacaoCarros.services;
+package com.br.appCarros.AplicacaoCarros.service;
 
-import com.br.appCarros.AplicacaoCarros.services.interfaces.IConvertData;
+import com.br.appCarros.AplicacaoCarros.service.interfaces.IConvertData;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;

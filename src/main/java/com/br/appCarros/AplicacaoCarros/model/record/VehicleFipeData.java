@@ -1,4 +1,4 @@
-package com.br.appCarros.AplicacaoCarros.models.records;
+package com.br.appCarros.AplicacaoCarros.model.record;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

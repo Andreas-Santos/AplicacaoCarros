@@ -1,7 +1,8 @@
 package com.br.appCarros.AplicacaoCarros;
 
 import com.br.appCarros.AplicacaoCarros.application.Main;
-import com.br.appCarros.AplicacaoCarros.repositorys.VehicleRepository;
+import com.br.appCarros.AplicacaoCarros.repository.CostumerRepository;
+import com.br.appCarros.AplicacaoCarros.repository.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -12,6 +13,9 @@ public class AplicacaoCarrosApplication implements CommandLineRunner {
     @Autowired
     private VehicleRepository vehicleRepository;
 
+    @Autowired
+    private CostumerRepository costumerRepository;
+
 	public static void main(String[] args) {
 		SpringApplication.run(AplicacaoCarrosApplication.class, args);
 	}
@@ -19,7 +23,7 @@ public class AplicacaoCarrosApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Main main = new Main(vehicleRepository);
+        Main main = new Main(vehicleRepository, costumerRepository);
         main.showMenu();
     }
 }

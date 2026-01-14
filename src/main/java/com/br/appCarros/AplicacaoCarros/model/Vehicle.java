@@ -1,7 +1,6 @@
-package com.br.appCarros.AplicacaoCarros.models;
+package com.br.appCarros.AplicacaoCarros.model;
 
 import jakarta.persistence.*;
-import org.springframework.data.jpa.domain.AbstractAuditable_;
 
 @Entity
 @Table(name = "veículos")

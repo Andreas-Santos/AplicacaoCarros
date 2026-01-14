@@ -1,4 +1,4 @@
-package com.br.appCarros.AplicacaoCarros.models.enums;
+package com.br.appCarros.AplicacaoCarros.model.enums;
 
 public enum VehicleCategory {
     CARS,

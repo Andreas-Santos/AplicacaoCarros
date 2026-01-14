@@ -1,4 +1,4 @@
-package com.br.appCarros.AplicacaoCarros.models;
+package com.br.appCarros.AplicacaoCarros.model;
 
 import jakarta.persistence.*;
 
@@ -11,14 +11,15 @@ public class Costumer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nome")
+    @Column(name = "nome", nullable = false)
     private String name;
 
+    @Column(unique = true, nullable = false)
     private String cpf;
 
     private String email;
 
-    @Column(name = "numeroTelefone")
+    @Column(name = "numeroTelefone", nullable = false)
     private String phoneNumber;
 
     @OneToMany(mappedBy = "costumer")
@@ -72,5 +73,13 @@ public class Costumer {
 
     public void setDeals(List<Deal> deals) {
         this.deals = deals;
+    }
+
+    @Override
+    public String toString() {
+        return "Nome: " + name + "\n" +
+                "CPF: " + cpf + "\n" +
+                "Email: " + email + "\n" +
+                "Telefone: " + phoneNumber + "\n";
     }
 }

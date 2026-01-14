@@ -1,4 +1,4 @@
-package com.br.appCarros.AplicacaoCarros.services;
+package com.br.appCarros.AplicacaoCarros.service;
 
 public class FipeApi {
     ApiConsume apiConsumer = new ApiConsume();

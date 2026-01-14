@@ -1,4 +1,4 @@
-package com.br.appCarros.AplicacaoCarros.models;
+package com.br.appCarros.AplicacaoCarros.model;
 
 public class Spent {
     private double value;

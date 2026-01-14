@@ -1,4 +1,4 @@
-package com.br.appCarros.AplicacaoCarros.models;
+package com.br.appCarros.AplicacaoCarros.model;
 
 import jakarta.persistence.*;
 
