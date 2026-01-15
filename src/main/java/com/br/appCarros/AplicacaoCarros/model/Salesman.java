@@ -18,7 +18,7 @@ public class Salesman {
     @Column(name = "data_inicial", nullable = false)
     private LocalDate initialDate;
 
-    @ManyToMany(mappedBy = "salesmanList")
+    @OneToMany(mappedBy = "salesman", fetch = FetchType.EAGER)
     private List<Deal> deals;
 
     public Salesman() {}
@@ -53,9 +53,15 @@ public class Salesman {
         this.deals = deals;
     }
 
+    public void addDeal(Deal deal) {
+        deals.add(deal);
+        deal.setSalesman(this);
+    }
+
     @Override
     public String toString() {
-        return "Nome: " + name + "\n" +
+        return "Id: " + id + "\n" +
+                "Nome: " + name + "\n" +
                 "Data inicial: " + initialDate + "\n";
     }
 }

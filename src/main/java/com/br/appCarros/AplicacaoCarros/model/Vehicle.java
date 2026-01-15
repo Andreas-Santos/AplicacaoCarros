@@ -136,7 +136,9 @@ public class Vehicle {
 
     @Override
     public String toString() {
-        return "Marca: " + this.brand + "\n" +
+        return
+                "Id: " + this.id + "\n" +
+                "Marca: " + this.brand + "\n" +
                 "Modelo: " + this.model + "\n" +
                 "Ano: " + this.modelYear + "\n" +
                 "Combustível: " + this.fuel + "\n" +

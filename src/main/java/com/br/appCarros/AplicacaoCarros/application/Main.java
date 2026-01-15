@@ -1,6 +1,7 @@
 package com.br.appCarros.AplicacaoCarros.application;
 
 import com.br.appCarros.AplicacaoCarros.model.Costumer;
+import com.br.appCarros.AplicacaoCarros.model.Deal;
 import com.br.appCarros.AplicacaoCarros.model.Salesman;
 import com.br.appCarros.AplicacaoCarros.model.Vehicle;
 import com.br.appCarros.AplicacaoCarros.model.record.BrandData;
@@ -8,6 +9,7 @@ import com.br.appCarros.AplicacaoCarros.model.record.ModelData;
 import com.br.appCarros.AplicacaoCarros.model.record.VehicleFipeData;
 import com.br.appCarros.AplicacaoCarros.model.record.YearData;
 import com.br.appCarros.AplicacaoCarros.repository.CostumerRepository;
+import com.br.appCarros.AplicacaoCarros.repository.DealRepository;
 import com.br.appCarros.AplicacaoCarros.repository.SalesmanRepository;
 import com.br.appCarros.AplicacaoCarros.repository.VehicleRepository;
 import com.br.appCarros.AplicacaoCarros.service.ConvertData;
@@ -24,18 +26,20 @@ import java.util.stream.Collectors;
 public class Main {
 
     private static final Logger log = LoggerFactory.getLogger(Main.class);
-    private FipeApi fipeApi = new FipeApi();
-    private ConvertData dataConverter = new ConvertData();
-    private Scanner scan = new Scanner(System.in);
-    private VehicleRepository vehicleRepository;
-    private CostumerRepository costumerRepository;
-    private SalesmanRepository salesmanRepository;
+    private final FipeApi fipeApi = new FipeApi();
+    private final ConvertData dataConverter = new ConvertData();
+    private final Scanner scan = new Scanner(System.in);
+    private final VehicleRepository vehicleRepository;
+    private final CostumerRepository costumerRepository;
+    private final SalesmanRepository salesmanRepository;
+    private final DealRepository dealRepository;
 
     public Main(VehicleRepository vehicleRepository, CostumerRepository costumerRepository,
-                SalesmanRepository salesmanRepository) {
+                SalesmanRepository salesmanRepository, DealRepository dealRepository) {
         this.vehicleRepository = vehicleRepository;
         this.costumerRepository = costumerRepository;
         this.salesmanRepository = salesmanRepository;
+        this.dealRepository = dealRepository;
     }
 
     public void showMenu() {
@@ -51,6 +55,7 @@ public class Main {
                     2 - Listar Clientes
                     3 - Cadastrar Veículo
                     4 - Listar Veículos
+                    5 - Cadastrar Venda
                     7 - Cadastrar Vendedor
                     8 - Listar Vendedores
                     9 - Buscar vendedor
@@ -72,6 +77,9 @@ public class Main {
                 case 4:
                     getVehicles();
                     break;
+                case 5:
+                    registerDeal();
+                    break;
                 case 7:
                     registerSalesman();
                     break;
@@ -88,6 +96,57 @@ public class Main {
                     System.out.println("O número digitado é inválido!");
                     break;
             }
+        }
+    }
+
+    private void registerDeal() {
+        Vehicle vehicle;
+        Salesman salesman;
+        Costumer costumer;
+        Double comission = 1000.00;
+
+        getVehicles();
+        System.out.println("Digite o id do veículo:");
+        long vehicleId = scan.nextLong();
+
+        vehicle = vehicleRepository.findByIdEquals(vehicleId);
+
+        if(vehicle == null) {
+            System.out.println("Veículo não encontrado!");
+            return;
+        }
+
+        getSalesman();
+        System.out.println("Digite o id do vendedor:");
+        long salesmanId = scan.nextLong();
+
+        salesman = salesmanRepository.findByIdEquals(salesmanId);
+
+        if(salesman == null) {
+            System.out.println("Vendedor não encontrado!");
+            return;
+        }
+
+        getCostumers();
+        System.out.println("Digite o id do cliente:");
+        long costumerId = scan.nextLong();
+
+        costumer = costumerRepository.findByIdEquals(costumerId);
+
+        if(costumer == null) {
+            System.out.println("Cliente não encontrado!");
+            return;
+        }
+
+        Deal deal = new Deal(vehicle, salesman, costumer, comission);
+
+        try {
+            vehicle.setDeal(deal);
+            dealRepository.save(deal);
+            vehicleRepository.save(vehicle);
+            System.out.println("Venda cadastrada com sucesso!");
+        } catch (Exception e) {
+            System.out.println("Erro ao cadastar venda - Erro: " + e.getMessage());
         }
     }
 
@@ -220,7 +279,7 @@ public class Main {
             vehicleRepository.save(vehicle);
             System.out.println("Veículo cadastrado com sucesso!");
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            System.out.println("Erro ao cadastar veículo - Erro: " + e.getMessage());
         }
     }
 
@@ -287,88 +346,5 @@ public class Main {
         } catch (Exception e) {
             System.out.println("Erro ao cadastrar vendedor - Erro: " + e.getMessage());
         }
-    }
-
-    public void showMore() {
-        var jsonBrands = fipeApi.getBrands("cars");
-        var brands = dataConverter.getList(jsonBrands, BrandData.class);
-
-        for(BrandData brand : brands) {
-            System.out.println("Código da marca: " + brand.brandCode() + " Marca: " + brand.brandName());
-        }
-        System.out.println("Digite o código da marca do veículo:");
-        var brandSearch = scan.nextInt();
-        scan.nextLine();
-
-        Optional<BrandData> brandFiltered= brands.stream()
-                .filter(b -> b.brandCode().equals(brandSearch))
-                .findFirst();
-
-        brandFiltered.ifPresentOrElse(
-                b -> System.out.println(
-                        "Código da marca: " + b.brandCode() +
-                                " Marca: " + b.brandName()
-                ),
-                () -> {
-                    System.out.println("Marca não encontrada");
-                    System.exit(0);
-                }
-        );
-
-        var jsonYears = fipeApi.getYearsByProducer("cars", brandSearch);
-        var years = dataConverter.getList(jsonYears, YearData.class);
-
-        for(YearData year : years) {
-            System.out.println("Código do ano: " + year.yearCode() + " Ano: " + year.yearName());
-        }
-
-        System.out.println("Digite o código do ano que deseja buscar:");
-        var yearSearch = scan.nextLine();
-
-        var jsonModels = fipeApi.getModelsByProducerAndYear("cars", brandSearch, yearSearch);
-        var models = dataConverter.getList(jsonModels, ModelData.class);
-
-        for(ModelData model : models) {
-            System.out.println("Código do modelo: " + model.modelCode() + " Modelo: " + model.modelName());
-        }
-
-        System.out.println("Digite o código do modelo que deseja buscar");
-        var modelSearch = scan.nextInt();
-        scan.nextLine();
-
-        var jsonFipe = fipeApi.getInfoFipe("cars", brandSearch, modelSearch, yearSearch);
-        var fipe = dataConverter.getData(jsonFipe, VehicleFipeData.class);
-
-        System.out.println(
-                "Marca: " + fipe.brand() +
-                "\nModelo: " + fipe.model() +
-                "\nAno: " + fipe.modelYear() +
-                "\nTipo do Combustível: " + fipe.fuel() +
-                "\nPreço fipe: " + fipe.price() +
-                "\nMês de referência: " + fipe.referenceMonth()
-        );
-
-        Vehicle vehicle = new Vehicle(
-                brandSearch,
-                fipe.brand(),
-                modelSearch,
-                fipe.model(),
-                yearSearch,
-                fipe.modelYear(),
-                fipe.fuel(),
-                fipe.price(),
-                fipe.referenceMonth()
-        );
-
-        try {
-            vehicleRepository.save(vehicle);
-            System.out.println("Veículo cadastrado com sucesso!");
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-        System.out.println("Carros salvos no banco:");
-        vehicleRepository.findAll().stream()
-                .forEach(System.out::println);
     }
 }

@@ -12,13 +12,13 @@ public class Deal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(mappedBy = "deal")
+    @OneToOne(mappedBy = "deal", cascade = CascadeType.MERGE)
     private Vehicle vehicle;
 
-    @ManyToMany
-    private List<Salesman> salesmanList;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    private Salesman salesman;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     private Costumer costumer;
 
     @Column(name = "comissao")
@@ -29,12 +29,13 @@ public class Deal {
 
     public Deal() {}
 
-    public Deal(Vehicle vehicle, List<Salesman> salesmanList, Costumer costumer, Double comission, LocalDate dealDate) {
-        this.vehicle = vehicle;
-        this.salesmanList = salesmanList;
-        this.costumer = costumer;
+    public Deal(Vehicle vehicle, Salesman salesman, Costumer costumer, Double comission) {
         this.comission = comission;
-        this.dealDate = dealDate;
+        this.dealDate = LocalDate.now();
+
+        setVehicle(vehicle);
+        setSalesman(salesman);
+        setCostumer(costumer);
     }
 
     public Vehicle getVehicle() {
@@ -43,14 +44,17 @@ public class Deal {
 
     public void setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
+        if (vehicle != null) {
+            vehicle.setDeal(this);
+        }
     }
 
-    public List<Salesman> getSalesmanList() {
-        return salesmanList;
+    public Salesman getSalesman() {
+        return salesman;
     }
 
-    public void setSalesmanList(List<Salesman> salesmanList) {
-        this.salesmanList = salesmanList;
+    public void setSalesman(Salesman salesman) {
+        this.salesman = salesman;
     }
 
     public Costumer getCostumer() {

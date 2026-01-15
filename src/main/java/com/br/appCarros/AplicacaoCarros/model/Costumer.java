@@ -22,7 +22,7 @@ public class Costumer {
     @Column(name = "numeroTelefone", nullable = false)
     private String phoneNumber;
 
-    @OneToMany(mappedBy = "costumer")
+    @OneToMany(mappedBy = "costumer", fetch = FetchType.EAGER)
     private List<Deal> deals;
 
     public Costumer() {}
@@ -75,9 +75,15 @@ public class Costumer {
         this.deals = deals;
     }
 
+    public void addDeal(Deal deal) {
+        deals.add(deal);
+        deal.setCostumer(this);
+    }
+
     @Override
     public String toString() {
-        return "Nome: " + name + "\n" +
+        return "Id: " + id + "\n" +
+                "Nome: " + name + "\n" +
                 "CPF: " + cpf + "\n" +
                 "Email: " + email + "\n" +
                 "Telefone: " + phoneNumber + "\n";

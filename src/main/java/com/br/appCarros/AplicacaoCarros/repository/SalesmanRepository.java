@@ -8,4 +8,6 @@ import java.util.List;
 public interface SalesmanRepository extends JpaRepository<Salesman, Long> {
 
     List<Salesman> findByNameContainingIgnoreCase(String name);
+
+    Salesman findByIdEquals(long salesmanId);
 }
