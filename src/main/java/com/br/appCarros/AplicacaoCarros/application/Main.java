@@ -105,11 +105,19 @@ public class Main {
         Costumer costumer;
         Double comission = 1000.00;
 
-        getVehicles();
+        List<Vehicle> vehiclesStock = vehicleRepository.findByDealIsNull();
+
+        vehiclesStock.stream()
+                .forEach(v -> System.out.println(v));
         System.out.println("Digite o id do veículo:");
         long vehicleId = scan.nextLong();
 
         vehicle = vehicleRepository.findByIdEquals(vehicleId);
+
+        if(vehicle.getDeal() != null) {
+            System.out.println("O veículo escolhido já foi vendido!");
+            return;
+        }
 
         if(vehicle == null) {
             System.out.println("Veículo não encontrado!");
