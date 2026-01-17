@@ -11,27 +11,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AplicacaoCarrosApplication implements CommandLineRunner {
-    @Autowired
-    private VehicleRepository vehicleRepository;
-
-    @Autowired
-    private CostumerRepository costumerRepository;
-
-    @Autowired
-    private SalesmanRepository salesmanRepository;
-
-    @Autowired
-    private DealRepository dealRepository;
-
+public class AplicacaoCarrosApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AplicacaoCarrosApplication.class, args);
 	}
-
-
-    @Override
-    public void run(String... args) throws Exception {
-        Main main = new Main(vehicleRepository, costumerRepository, salesmanRepository, dealRepository);
-        main.showMenu();
-    }
 }
