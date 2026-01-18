@@ -10,7 +10,7 @@ import java.util.List;
 public class Salesman {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(name = "nome", nullable = false)
     private String name;
@@ -27,6 +27,14 @@ public class Salesman {
         this.name = name;
         this.initialDate = LocalDate.now();
         this.deals = deals;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
