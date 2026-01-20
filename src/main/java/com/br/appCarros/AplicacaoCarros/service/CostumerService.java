@@ -30,12 +30,11 @@ public class CostumerService {
 
     public List<CostumerDTO> CostumerDTOConverter(List<Costumer> costumers) {
         return costumers.stream()
-                .map(c -> new CostumerDTO(c.getId(), c.getName(), c.getCpf(), c.getEmail(), c.getPhoneNumber()))
+                .map(c -> new CostumerDTO(c))
                 .collect(Collectors.toList());
     }
 
     public CostumerDTO CostumerDTOConverter(Costumer costumer) {
-        return new CostumerDTO(costumer.getId(), costumer.getName(), costumer.getCpf(), costumer.getEmail(),
-                costumer.getPhoneNumber());
+        return new CostumerDTO(costumer);
     }
 }

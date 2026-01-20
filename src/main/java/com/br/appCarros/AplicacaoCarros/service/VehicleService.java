@@ -25,14 +25,12 @@ public class VehicleService {
 
     public List<VehicleDTO> VehicleDTOConverter(List<Vehicle> vehicles) {
         return vehicles.stream()
-                .map(v -> new VehicleDTO(v.getId(), v.getBrand(), v.getModel(), v.getModelYear(),
-                        v.getFuel(), v.getPrice(), v.getReferenceMonth()))
+                .map(v -> new VehicleDTO(v))
                 .collect(Collectors.toList());
     }
 
     public VehicleDTO VehicleDTOConverter(Vehicle vehicle) {
-        return new VehicleDTO(vehicle.getId(), vehicle.getBrand(), vehicle.getModel(), vehicle.getModelYear(),
-                vehicle.getFuel(), vehicle.getPrice(), vehicle.getReferenceMonth());
+        return new VehicleDTO(vehicle);
     }
 
     public VehicleDTO getVehicleById(Long id) {

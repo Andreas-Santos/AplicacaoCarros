@@ -12,7 +12,7 @@ public class Deal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(mappedBy = "deal", cascade = CascadeType.MERGE)
+    @OneToOne(cascade = CascadeType.MERGE)
     private Vehicle vehicle;
 
     @ManyToOne(cascade = CascadeType.MERGE)
@@ -36,6 +36,14 @@ public class Deal {
         setVehicle(vehicle);
         setSalesman(salesman);
         setCostumer(costumer);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Vehicle getVehicle() {

@@ -36,7 +36,7 @@ public class Vehicle {
     @Column(name = "referencia_mes")
     private String referenceMonth;
 
-    @OneToOne
+    @OneToOne(mappedBy = "vehicle")
     private Deal deal;
 
     public Vehicle() {}

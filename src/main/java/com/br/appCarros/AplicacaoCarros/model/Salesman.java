@@ -23,10 +23,9 @@ public class Salesman {
 
     public Salesman() {}
 
-    public Salesman(String name, List<Deal> deals) {
+    public Salesman(String name) {
         this.name = name;
         this.initialDate = LocalDate.now();
-        this.deals = deals;
     }
 
     public Long getId() {

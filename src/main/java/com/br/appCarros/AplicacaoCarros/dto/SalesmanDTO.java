@@ -1,5 +1,7 @@
 package com.br.appCarros.AplicacaoCarros.dto;
 
+import com.br.appCarros.AplicacaoCarros.model.Salesman;
+
 import java.time.LocalDate;
 
 public record SalesmanDTO(
@@ -7,4 +9,8 @@ public record SalesmanDTO(
         String name,
         LocalDate initialDate
 ) {
+
+    public SalesmanDTO(Salesman salesman) {
+        this(salesman.getId(), salesman.getName(), salesman.getInitialDate());
+    }
 }
