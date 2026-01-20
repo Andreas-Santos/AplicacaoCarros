@@ -10,8 +10,4 @@ public record CostumerDTO(
         String email,
         String phoneNumber
 ) {
-
-    public CostumerDTO(Costumer costumer) {
-        this(costumer.getId(), costumer.getName(), costumer.getCpf(), costumer.getEmail(), costumer.getPhoneNumber());
-    }
 }

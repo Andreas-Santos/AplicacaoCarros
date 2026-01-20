@@ -9,8 +9,4 @@ public record SalesmanDTO(
         String name,
         LocalDate initialDate
 ) {
-
-    public SalesmanDTO(Salesman salesman) {
-        this(salesman.getId(), salesman.getName(), salesman.getInitialDate());
-    }
 }

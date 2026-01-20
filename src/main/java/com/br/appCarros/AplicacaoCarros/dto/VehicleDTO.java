@@ -11,9 +11,4 @@ public record VehicleDTO(
         String price,
         String referenceMonth
 ) {
-
-    public VehicleDTO(Vehicle vehicle) {
-        this(vehicle.getId(), vehicle.getBrand(), vehicle.getModel(), vehicle.getModelYear(), vehicle.getFuel(),
-                vehicle.getPrice(), vehicle.getReferenceMonth());
-    }
 }

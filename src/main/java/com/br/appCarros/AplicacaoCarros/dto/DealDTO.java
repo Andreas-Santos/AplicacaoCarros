@@ -12,9 +12,4 @@ public record DealDTO(
         Double comission,
         LocalDate dealDate
 ){
-
-    public DealDTO(Deal deal) {
-        this(deal.getId(), new VehicleDTO(deal.getVehicle()), new SalesmanDTO(deal.getSalesman()),
-                new CostumerDTO(deal.getCostumer()), deal.getComission(), deal.getDealDate());
-    }
 }

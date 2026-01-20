@@ -347,7 +347,7 @@ public class Main {
         System.out.println("Digite o nome do vendedor");
         name = scan.nextLine();
 
-        Salesman salesman = new Salesman(name, null);
+        Salesman salesman = new Salesman(name);
         try {
             salesmanRepository.save(salesman);
             System.out.println("Vendedor cadastrado com sucesso!");

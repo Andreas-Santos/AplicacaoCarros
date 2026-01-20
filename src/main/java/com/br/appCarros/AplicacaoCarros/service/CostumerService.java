@@ -1,6 +1,7 @@
 package com.br.appCarros.AplicacaoCarros.service;
 
 import com.br.appCarros.AplicacaoCarros.dto.CostumerDTO;
+import com.br.appCarros.AplicacaoCarros.mapper.CostumerMapper;
 import com.br.appCarros.AplicacaoCarros.model.Costumer;
 import com.br.appCarros.AplicacaoCarros.repository.CostumerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,26 +16,19 @@ public class CostumerService {
     @Autowired
     CostumerRepository costumerRepository;
 
+    @Autowired
+    CostumerMapper costumerMapper;
+
     public List<CostumerDTO> getCostumers() {
-        return CostumerDTOConverter(costumerRepository.findAll());
+        return costumerMapper.toDTO(costumerRepository.findAll());
     }
 
     public CostumerDTO getCostumerById(Long id) {
         Optional<Costumer> costumer = costumerRepository.findById(id);
 
         if(costumer.isPresent())
-            return CostumerDTOConverter(costumer.get());
+            return costumerMapper.toDTO(costumer.get());
 
         return null;
-    }
-
-    public List<CostumerDTO> CostumerDTOConverter(List<Costumer> costumers) {
-        return costumers.stream()
-                .map(c -> new CostumerDTO(c))
-                .collect(Collectors.toList());
-    }
-
-    public CostumerDTO CostumerDTOConverter(Costumer costumer) {
-        return new CostumerDTO(costumer);
     }
 }
