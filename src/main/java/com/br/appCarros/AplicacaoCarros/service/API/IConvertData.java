@@ -1,4 +1,4 @@
-package com.br.appCarros.AplicacaoCarros.service.interfaces;
+package com.br.appCarros.AplicacaoCarros.service.API;
 
 import java.util.List;
 

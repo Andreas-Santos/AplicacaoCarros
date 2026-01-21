@@ -1,4 +1,4 @@
-package com.br.appCarros.AplicacaoCarros.service;
+package com.br.appCarros.AplicacaoCarros.service.API;
 
 import java.io.IOException;
 import java.net.URI;

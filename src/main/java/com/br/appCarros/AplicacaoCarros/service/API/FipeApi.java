@@ -1,5 +1,8 @@
-package com.br.appCarros.AplicacaoCarros.service;
+package com.br.appCarros.AplicacaoCarros.service.API;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class FipeApi {
     ApiConsume apiConsumer = new ApiConsume();
 
