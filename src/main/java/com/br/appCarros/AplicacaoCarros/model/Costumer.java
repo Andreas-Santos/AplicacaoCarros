@@ -19,20 +19,19 @@ public class Costumer {
 
     private String email;
 
-    @Column(name = "numeroTelefone", nullable = false)
+    @Column(name = "numeroTelefone")
     private String phoneNumber;
 
     @OneToMany(mappedBy = "costumer", fetch = FetchType.EAGER)
-    private List<Deal> deals;
+    private List<Deal> deals = null;
 
     public Costumer() {}
 
-    public Costumer(String name, String cpf, String email, String phoneNumber, List<Deal> deals) {
+    public Costumer(String name, String cpf, String email, String phoneNumber) {
         this.name = name;
         this.cpf = cpf;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.deals = deals;
     }
 
     public Long getId() {

@@ -4,8 +4,11 @@ import com.br.appCarros.AplicacaoCarros.dto.CostumerDTO;
 import com.br.appCarros.AplicacaoCarros.mapper.CostumerMapper;
 import com.br.appCarros.AplicacaoCarros.model.Costumer;
 import com.br.appCarros.AplicacaoCarros.repository.CostumerRepository;
+import com.br.appCarros.AplicacaoCarros.request.CreateCostumerRequest;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,5 +33,9 @@ public class CostumerService {
             return costumerMapper.toDTO(costumer.get());
 
         return null;
+    }
+
+    public void createCostumer(@RequestBody @Valid CreateCostumerRequest costumerRequest) {
+        costumerRepository.save(costumerMapper.toEntity(costumerRequest));
     }
 }

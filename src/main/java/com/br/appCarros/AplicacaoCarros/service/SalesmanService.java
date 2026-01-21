@@ -8,6 +8,7 @@ import com.br.appCarros.AplicacaoCarros.request.CreateSalesmanRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
@@ -33,7 +34,7 @@ public class SalesmanService {
         return null;
     }
 
-    public void createSalesman(@Valid CreateSalesmanRequest salesmanRequest) {
+    public void createSalesman(@RequestBody @Valid CreateSalesmanRequest salesmanRequest) {
         salesmanRepository.save(salesmanMapper.toEntity(salesmanRequest));
     }
 }
