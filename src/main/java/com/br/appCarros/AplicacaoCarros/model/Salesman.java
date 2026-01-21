@@ -1,6 +1,7 @@
 package com.br.appCarros.AplicacaoCarros.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -13,10 +14,11 @@ public class Salesman {
     private Long id;
 
     @Column(name = "nome", nullable = false)
+    @NotBlank
     private String name;
 
-    @Column(name = "data_inicial", nullable = false)
-    private LocalDate initialDate;
+    @Column(name = "data_inicial")
+    private LocalDate initialDate = LocalDate.now();;
 
     @OneToMany(mappedBy = "salesman", fetch = FetchType.EAGER)
     private List<Deal> deals;

@@ -4,6 +4,8 @@ import com.br.appCarros.AplicacaoCarros.dto.SalesmanDTO;
 import com.br.appCarros.AplicacaoCarros.mapper.SalesmanMapper;
 import com.br.appCarros.AplicacaoCarros.model.Salesman;
 import com.br.appCarros.AplicacaoCarros.repository.SalesmanRepository;
+import com.br.appCarros.AplicacaoCarros.request.CreateSalesmanRequest;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,5 +31,9 @@ public class SalesmanService {
             return salesmanMapper.toDTO(salesman.get());
 
         return null;
+    }
+
+    public void createSalesman(@Valid CreateSalesmanRequest salesmanRequest) {
+        salesmanRepository.save(salesmanMapper.toEntity(salesmanRequest));
     }
 }

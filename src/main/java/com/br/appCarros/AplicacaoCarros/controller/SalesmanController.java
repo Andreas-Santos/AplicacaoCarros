@@ -1,9 +1,12 @@
 package com.br.appCarros.AplicacaoCarros.controller;
 
 import com.br.appCarros.AplicacaoCarros.dto.SalesmanDTO;
+import com.br.appCarros.AplicacaoCarros.request.CreateSalesmanRequest;
 import com.br.appCarros.AplicacaoCarros.service.SalesmanService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -23,8 +26,9 @@ public class SalesmanController {
         return salesmanService.getSalesmanById(id);
     }
 
-//    @PostMapping
-//    public createSalesman(@RequestBody SalesmanRequest salesmanRequest) {
-//
-//    }
+    @PostMapping
+    @Transactional
+    public void createSalesman(@RequestBody @Valid CreateSalesmanRequest salesmanRequest) {
+        salesmanService.createSalesman(salesmanRequest);
+    }
 }
