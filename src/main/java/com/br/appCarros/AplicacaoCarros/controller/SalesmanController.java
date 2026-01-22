@@ -31,11 +31,7 @@ public class SalesmanController {
     @PostMapping
     @Transactional
     public ResponseEntity<String> createSalesman(@RequestBody @Valid CreateSalesmanRequest salesmanRequest) {
-        try {
-            salesmanService.createSalesman(salesmanRequest);
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-        }
+        salesmanService.createSalesman(salesmanRequest);
 
         return ResponseEntity.status(HttpStatus.CREATED).body("Vendedor criado com sucesso!");
     }
