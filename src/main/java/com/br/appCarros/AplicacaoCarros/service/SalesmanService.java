@@ -35,6 +35,10 @@ public class SalesmanService {
     }
 
     public void createSalesman(@RequestBody @Valid CreateSalesmanRequest salesmanRequest) {
+        if(salesmanRequest == null) {
+            throw new IllegalArgumentException("O body da requisição é inválido");
+        }
+
         salesmanRepository.save(salesmanMapper.toEntity(salesmanRequest));
     }
 }
