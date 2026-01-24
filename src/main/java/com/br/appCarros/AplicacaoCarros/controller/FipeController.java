@@ -1,7 +1,9 @@
 package com.br.appCarros.AplicacaoCarros.controller;
 
+import com.br.appCarros.AplicacaoCarros.dto.VehicleDTO;
 import com.br.appCarros.AplicacaoCarros.model.record.BrandData;
 import com.br.appCarros.AplicacaoCarros.model.record.ModelData;
+import com.br.appCarros.AplicacaoCarros.model.record.VehicleFipeData;
 import com.br.appCarros.AplicacaoCarros.model.record.YearData;
 import com.br.appCarros.AplicacaoCarros.service.FipeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +33,11 @@ public class FipeController {
     @GetMapping("/{brandId}/{yearId}")
     public List<ModelData> getModels(@PathVariable int brandId, @PathVariable String yearId) {
         return fipeService.getModels(brandId, yearId);
+    }
+
+    @GetMapping("/{brandId}/{yearId}/{modelId}")
+    public VehicleFipeData getInfoFipe(@PathVariable Integer brandId, @PathVariable String yearId,
+                                       @PathVariable Integer modelId) {
+        return fipeService.getInfoFipe(brandId, modelId, yearId);
     }
 }

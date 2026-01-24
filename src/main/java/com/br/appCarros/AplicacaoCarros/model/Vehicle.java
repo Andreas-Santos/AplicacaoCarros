@@ -41,17 +41,13 @@ public class Vehicle {
 
     public Vehicle() {}
 
-    public Vehicle(Integer brandId, String brand, Integer modelId, String model, String yearId, String modelYear,
-                   String fuel, String price, String referenceMonth) {
+    public Vehicle(Integer brandId, String brand, Integer modelId, String model, String yearId, String modelYear) {
         this.brandId = brandId;
         this.brand = brand;
         this.modelId = modelId;
         this.model = model;
         this.yearId = yearId;
         this.modelYear = modelYear;
-        this.fuel = fuel;
-        this.price = price;
-        this.referenceMonth = referenceMonth;
     }
 
     public Long getId() {

@@ -23,7 +23,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ResponseError> generalException(Exception ex) {
+    public ResponseEntity<ResponseError> handlerGeneralException(Exception ex) {
 
         ResponseError response = new ResponseError(
                 ex.getMessage(),

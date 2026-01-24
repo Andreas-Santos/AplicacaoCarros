@@ -2,6 +2,7 @@ package com.br.appCarros.AplicacaoCarros.service;
 
 import com.br.appCarros.AplicacaoCarros.model.record.BrandData;
 import com.br.appCarros.AplicacaoCarros.model.record.ModelData;
+import com.br.appCarros.AplicacaoCarros.model.record.VehicleFipeData;
 import com.br.appCarros.AplicacaoCarros.model.record.YearData;
 import com.br.appCarros.AplicacaoCarros.service.API.ConvertData;
 import com.br.appCarros.AplicacaoCarros.service.API.FipeApi;
@@ -37,5 +38,12 @@ public class FipeService {
         List<ModelData> models = dataConverter.getList(jsonModels, ModelData.class);
 
         return models;
+    }
+
+    public VehicleFipeData getInfoFipe(Integer brandId, Integer modelId, String yearId) {
+        var jsonVehicle = fipeApi.getInfoFipe("cars", brandId, modelId, yearId);
+        VehicleFipeData vehicleFipe = dataConverter.getData(jsonVehicle, VehicleFipeData.class);
+
+        return vehicleFipe;
     }
 }
