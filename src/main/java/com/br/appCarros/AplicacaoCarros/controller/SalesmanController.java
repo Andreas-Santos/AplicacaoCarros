@@ -35,4 +35,11 @@ public class SalesmanController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body("Vendedor criado com sucesso!");
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteSalesman(@PathVariable Long id) {
+        salesmanService.deleteSalesman(id);
+
+        return ResponseEntity.status(HttpStatus.OK).body("Vendedor deletado com sucesos!");
+    }
 }

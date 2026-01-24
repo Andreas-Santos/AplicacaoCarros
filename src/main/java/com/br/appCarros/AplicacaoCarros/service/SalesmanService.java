@@ -1,6 +1,7 @@
 package com.br.appCarros.AplicacaoCarros.service;
 
 import com.br.appCarros.AplicacaoCarros.dto.SalesmanDTO;
+import com.br.appCarros.AplicacaoCarros.exception.SalesmanException;
 import com.br.appCarros.AplicacaoCarros.mapper.SalesmanMapper;
 import com.br.appCarros.AplicacaoCarros.model.Salesman;
 import com.br.appCarros.AplicacaoCarros.repository.SalesmanRepository;
@@ -36,5 +37,15 @@ public class SalesmanService {
 
     public void createSalesman(@RequestBody @Valid CreateSalesmanRequest salesmanRequest) {
         salesmanRepository.save(salesmanMapper.toEntity(salesmanRequest));
+    }
+
+    public void deleteSalesman(Long id) {
+        Optional<Salesman> salesman = salesmanRepository.findById(id);
+
+        if(salesman.isEmpty()) {
+            throw new SalesmanException("Não existe vendedor com esse id!");
+        }
+
+        salesmanRepository.deleteById(id);
     }
 }

@@ -4,6 +4,7 @@ import com.br.appCarros.AplicacaoCarros.dto.VehicleDTO;
 import com.br.appCarros.AplicacaoCarros.model.Vehicle;
 import com.br.appCarros.AplicacaoCarros.request.CreateVehicleRequest;
 import com.br.appCarros.AplicacaoCarros.service.VehicleService;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,6 +36,7 @@ public class VehicleController {
     }
 
     @PostMapping
+    @Transactional
     public ResponseEntity<String> createVehicle(@RequestBody @Valid CreateVehicleRequest vehicleRequest) {
         vehicleService.createVehicle(vehicleRequest);
 
