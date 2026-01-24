@@ -36,6 +36,8 @@ public class VehicleController {
 
     @PostMapping
     public ResponseEntity<String> createVehicle(@RequestBody @Valid CreateVehicleRequest vehicleRequest) {
+        vehicleService.createVehicle(vehicleRequest);
 
+        return ResponseEntity.status(HttpStatus.CREATED).body("Veículo cadastrado com sucesso!");
     }
 }

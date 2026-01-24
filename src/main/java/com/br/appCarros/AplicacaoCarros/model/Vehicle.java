@@ -1,6 +1,7 @@
 package com.br.appCarros.AplicacaoCarros.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "veículos")
@@ -9,31 +10,40 @@ public class Vehicle {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "marca_id")
+    @Column(name = "marca_id", nullable = false)
+    @NotBlank
     private Integer brandId;
 
-    @Column(name = "marca")
+    @Column(name = "marca", nullable = false)
+    @NotBlank
     private String brand;
 
-    @Column(name = "modelo_id")
+    @Column(name = "modelo_id", nullable = false)
+    @NotBlank
     private Integer modelId;
 
-    @Column(name = "modelo")
+    @Column(name = "modelo", nullable = false)
+    @NotBlank
     private String model;
 
-    @Column(name = "ano_id")
+    @Column(name = "ano_id", nullable = false)
+    @NotBlank
     private String yearId;
 
-    @Column(name = "ano_modelo")
+    @Column(name = "ano_modelo", nullable = false)
+    @NotBlank
     private String modelYear;
 
-    @Column(name = "combustivel")
+    @Column(name = "combustivel", nullable = false)
+    @NotBlank
     private String fuel;
 
-    @Column(name = "preco")
+    @Column(name = "preco", nullable = false)
+    @NotBlank
     private String price;
 
-    @Column(name = "referencia_mes")
+    @Column(name = "referencia_mes", nullable = false)
+    @NotBlank
     private String referenceMonth;
 
     @OneToOne(mappedBy = "vehicle")
@@ -41,13 +51,17 @@ public class Vehicle {
 
     public Vehicle() {}
 
-    public Vehicle(Integer brandId, String brand, Integer modelId, String model, String yearId, String modelYear) {
+    public Vehicle(Integer brandId, String brand, Integer modelId, String model, String yearId, String modelYear,
+                    String fuel, String price, String referenceMonth) {
         this.brandId = brandId;
         this.brand = brand;
         this.modelId = modelId;
         this.model = model;
         this.yearId = yearId;
         this.modelYear = modelYear;
+        this.fuel = fuel;
+        this.price = price;
+        this.referenceMonth = referenceMonth;
     }
 
     public Long getId() {

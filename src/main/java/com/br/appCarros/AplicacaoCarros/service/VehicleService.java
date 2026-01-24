@@ -4,8 +4,11 @@ import com.br.appCarros.AplicacaoCarros.dto.VehicleDTO;
 import com.br.appCarros.AplicacaoCarros.mapper.VehicleMapper;
 import com.br.appCarros.AplicacaoCarros.model.Vehicle;
 import com.br.appCarros.AplicacaoCarros.repository.VehicleRepository;
+import com.br.appCarros.AplicacaoCarros.request.CreateVehicleRequest;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
@@ -34,4 +37,8 @@ public class VehicleService {
 
         return null;
     };
+
+    public void createVehicle(@RequestBody @Valid CreateVehicleRequest vehicleRequest) {
+        vehicleRepository.save(vehicleMapper.toEntity(vehicleRequest));
+    }
 }
