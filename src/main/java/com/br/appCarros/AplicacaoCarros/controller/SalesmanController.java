@@ -37,6 +37,7 @@ public class SalesmanController {
     }
 
     @DeleteMapping("/{id}")
+    @Transactional
     public ResponseEntity<String> deleteSalesman(@PathVariable Long id) {
         salesmanService.deleteSalesman(id);
 

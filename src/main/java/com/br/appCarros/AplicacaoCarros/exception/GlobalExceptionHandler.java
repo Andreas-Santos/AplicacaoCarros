@@ -1,5 +1,6 @@
 package com.br.appCarros.AplicacaoCarros.exception;
 
+import com.br.appCarros.AplicacaoCarros.model.Costumer;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -17,6 +18,17 @@ public class GlobalExceptionHandler {
             ex.getMessage(),
             HttpStatus.BAD_REQUEST,
             LocalDateTime.now()
+        );
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    }
+
+    @ExceptionHandler(CostumerException.class)
+    public ResponseEntity<ResponseError> handlerCostumerException(CostumerException ex) {
+        ResponseError response = new ResponseError(
+                ex.getMessage(),
+                HttpStatus.BAD_REQUEST,
+                LocalDateTime.now()
         );
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);

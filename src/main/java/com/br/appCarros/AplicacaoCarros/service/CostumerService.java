@@ -1,6 +1,7 @@
 package com.br.appCarros.AplicacaoCarros.service;
 
 import com.br.appCarros.AplicacaoCarros.dto.CostumerDTO;
+import com.br.appCarros.AplicacaoCarros.exception.CostumerException;
 import com.br.appCarros.AplicacaoCarros.mapper.CostumerMapper;
 import com.br.appCarros.AplicacaoCarros.model.Costumer;
 import com.br.appCarros.AplicacaoCarros.repository.CostumerRepository;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class CostumerService {
@@ -37,5 +37,15 @@ public class CostumerService {
 
     public void createCostumer(@RequestBody @Valid CreateCostumerRequest costumerRequest) {
         costumerRepository.save(costumerMapper.toEntity(costumerRequest));
+    }
+
+    public void deleteCostumer(Long id) {
+        Optional<Costumer> costumer = costumerRepository.findById(id);
+
+        if(costumer.isEmpty()) {
+            throw new CostumerException("Não existe cliente com este id!");
+        }
+
+        costumerRepository.deleteById(id);
     }
 }
