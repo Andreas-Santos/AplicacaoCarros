@@ -41,6 +41,6 @@ public class SalesmanController {
     public ResponseEntity<String> deleteSalesman(@PathVariable Long id) {
         salesmanService.deleteSalesman(id);
 
-        return ResponseEntity.status(HttpStatus.OK).body("Vendedor deletado com sucesos!");
+        return ResponseEntity.status(HttpStatus.OK).body("Vendedor deletado com sucesso!");
     }
 }

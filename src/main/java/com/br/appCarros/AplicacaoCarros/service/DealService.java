@@ -1,6 +1,7 @@
 package com.br.appCarros.AplicacaoCarros.service;
 
 import com.br.appCarros.AplicacaoCarros.dto.DealDTO;
+import com.br.appCarros.AplicacaoCarros.exception.DealException;
 import com.br.appCarros.AplicacaoCarros.mapper.DealMapper;
 import com.br.appCarros.AplicacaoCarros.model.Costumer;
 import com.br.appCarros.AplicacaoCarros.model.Deal;
@@ -55,6 +56,19 @@ public class DealService {
 
         Deal deal = dealMapper.toEntity(dealRequest, vehicle, salesman, costumer);
 
+        vehicle.setDeal(deal);
+        deal.setVehicle(vehicle);
+
         dealRepository.save(deal);
+    }
+
+    public void deleteDeal(Long id) {
+        Optional<Deal> deal = dealRepository.findById(id);
+
+        if(deal.isEmpty()) {
+            throw new DealException("Não existe venda com esse id!");
+        }
+
+        dealRepository.deleteById(id);
     }
 }

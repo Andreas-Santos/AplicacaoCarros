@@ -24,8 +24,4 @@ public interface DealMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "dealDate", ignore = true)
     Deal toEntity(CreateDealRequest salesmanRequest, Vehicle vehicle, Salesman salesman, Costumer costumer);
-
-//    @Mapping(target = "id", ignore = true)
-//    @Mapping(target = "dealDate", ignore = true)
-//    List<Deal> toEntity(List<DealDTO> dealDTO);
 }

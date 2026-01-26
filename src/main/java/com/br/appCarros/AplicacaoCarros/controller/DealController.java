@@ -34,4 +34,12 @@ public class DealController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body("Venda criada com sucesso!");
     }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity<String> deleteDeal(@PathVariable Long id) {
+        dealService.deleteDeal(id);
+
+        return ResponseEntity.status(HttpStatus.OK).body("Venda deletada com sucesso!");
+    }
 }
