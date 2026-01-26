@@ -1,6 +1,7 @@
 package com.br.appCarros.AplicacaoCarros.model;
 
 import jakarta.persistence.*;
+import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -25,13 +26,12 @@ public class Deal {
     private Double comission;
 
     @Column(name = "data")
-    private LocalDate dealDate;
+    private LocalDate dealDate = LocalDate.now();
 
     public Deal() {}
 
     public Deal(Vehicle vehicle, Salesman salesman, Costumer costumer, Double comission) {
         this.comission = comission;
-        this.dealDate = LocalDate.now();
 
         setVehicle(vehicle);
         setSalesman(salesman);

@@ -1,8 +1,13 @@
 package com.br.appCarros.AplicacaoCarros.mapper;
 
 import com.br.appCarros.AplicacaoCarros.dto.DealDTO;
+import com.br.appCarros.AplicacaoCarros.model.Costumer;
 import com.br.appCarros.AplicacaoCarros.model.Deal;
+import com.br.appCarros.AplicacaoCarros.model.Salesman;
+import com.br.appCarros.AplicacaoCarros.model.Vehicle;
+import com.br.appCarros.AplicacaoCarros.request.CreateDealRequest;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.ReportingPolicy;
 
@@ -16,7 +21,11 @@ public interface DealMapper {
 
     List<DealDTO> toDTO(List<Deal> deals);
 
-//    Deal toEntity(DealDTO dealDTO);
-//
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "dealDate", ignore = true)
+    Deal toEntity(CreateDealRequest salesmanRequest, Vehicle vehicle, Salesman salesman, Costumer costumer);
+
+//    @Mapping(target = "id", ignore = true)
+//    @Mapping(target = "dealDate", ignore = true)
 //    List<Deal> toEntity(List<DealDTO> dealDTO);
 }

@@ -2,9 +2,17 @@ package com.br.appCarros.AplicacaoCarros.service;
 
 import com.br.appCarros.AplicacaoCarros.dto.DealDTO;
 import com.br.appCarros.AplicacaoCarros.mapper.DealMapper;
+import com.br.appCarros.AplicacaoCarros.model.Costumer;
 import com.br.appCarros.AplicacaoCarros.model.Deal;
+import com.br.appCarros.AplicacaoCarros.model.Salesman;
+import com.br.appCarros.AplicacaoCarros.model.Vehicle;
+import com.br.appCarros.AplicacaoCarros.repository.CostumerRepository;
 import com.br.appCarros.AplicacaoCarros.repository.DealRepository;
+import com.br.appCarros.AplicacaoCarros.repository.SalesmanRepository;
+import com.br.appCarros.AplicacaoCarros.repository.VehicleRepository;
+import com.br.appCarros.AplicacaoCarros.request.CreateDealRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +22,15 @@ import java.util.Optional;
 public class DealService {
     @Autowired
     DealRepository dealRepository;
+
+    @Autowired
+    VehicleRepository vehicleRepository;
+
+    @Autowired
+    SalesmanRepository salesmanRepository;
+
+    @Autowired
+    CostumerRepository costumerRepository;
 
     @Autowired
     DealMapper dealMapper;
@@ -29,5 +46,15 @@ public class DealService {
             return dealMapper.toDTO(deal.get());
 
         return null;
+    }
+
+    public void createDeal(CreateDealRequest dealRequest) {
+        Vehicle vehicle = vehicleRepository.findByIdEquals(dealRequest.vehicleId());
+        Salesman salesman = salesmanRepository.findByIdEquals(dealRequest.salesmanId());
+        Costumer costumer = costumerRepository.findByIdEquals(dealRequest.costumerId());
+
+        Deal deal = dealMapper.toEntity(dealRequest, vehicle, salesman, costumer);
+
+        dealRepository.save(deal);
     }
 }
