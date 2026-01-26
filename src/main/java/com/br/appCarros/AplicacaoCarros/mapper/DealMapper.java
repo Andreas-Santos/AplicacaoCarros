@@ -22,6 +22,9 @@ public interface DealMapper {
     List<DealDTO> toDTO(List<Deal> deals);
 
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "vehicle", ignore = true)
+    @Mapping(target = "salesman", ignore = true)
+    @Mapping(target = "costumer", ignore = true)
     @Mapping(target = "dealDate", ignore = true)
-    Deal toEntity(CreateDealRequest salesmanRequest, Vehicle vehicle, Salesman salesman, Costumer costumer);
+    Deal toEntity(CreateDealRequest salesmanRequest);
 }

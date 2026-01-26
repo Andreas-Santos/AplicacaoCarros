@@ -19,10 +19,8 @@ public interface VehicleMapper {
     List<VehicleDTO> toDTO(List<Vehicle> vehicles);
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "deal", ignore = true)
     Vehicle toEntity(CreateVehicleRequest vehicleRequest);
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "deal", ignore = true)
     List<Vehicle> toEntity(List<CreateVehicleRequest> vehicleRequest);
 }

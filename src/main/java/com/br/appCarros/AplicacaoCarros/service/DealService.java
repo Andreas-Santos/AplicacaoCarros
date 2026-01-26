@@ -54,10 +54,11 @@ public class DealService {
         Salesman salesman = salesmanRepository.findByIdEquals(dealRequest.salesmanId());
         Costumer costumer = costumerRepository.findByIdEquals(dealRequest.costumerId());
 
-        Deal deal = dealMapper.toEntity(dealRequest, vehicle, salesman, costumer);
+        Deal deal = dealMapper.toEntity(dealRequest);
 
-        vehicle.setDeal(deal);
         deal.setVehicle(vehicle);
+        deal.setSalesman(salesman);
+        deal.setCostumer(costumer);
 
         dealRepository.save(deal);
     }

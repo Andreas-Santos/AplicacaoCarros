@@ -1,10 +1,8 @@
 package com.br.appCarros.AplicacaoCarros.model;
 
 import jakarta.persistence.*;
-import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @Table(name = "negocios")
@@ -13,14 +11,16 @@ public class Deal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "vehicle_id")
+    @OneToOne
+    @JoinColumn(name = "vehicle_id", nullable = false)
     private Vehicle vehicle;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+    @JoinColumn(name = "salesman_id", nullable = false)
     private Salesman salesman;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+    @JoinColumn(name = "costumer_id", nullable = false)
     private Costumer costumer;
 
     @Column(name = "comissao")
@@ -53,9 +53,6 @@ public class Deal {
 
     public void setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
-        if (vehicle != null) {
-            vehicle.setDeal(this);
-        }
     }
 
     public Salesman getSalesman() {

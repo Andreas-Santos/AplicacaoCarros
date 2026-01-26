@@ -1,6 +1,7 @@
 package com.br.appCarros.AplicacaoCarros.service;
 
 import com.br.appCarros.AplicacaoCarros.dto.VehicleDTO;
+import com.br.appCarros.AplicacaoCarros.exception.VehicleException;
 import com.br.appCarros.AplicacaoCarros.mapper.VehicleMapper;
 import com.br.appCarros.AplicacaoCarros.model.Vehicle;
 import com.br.appCarros.AplicacaoCarros.repository.VehicleRepository;
@@ -25,10 +26,6 @@ public class VehicleService {
         return vehicleMapper.toDTO(vehicleRepository.findAll());
     }
 
-    public List<VehicleDTO> getVehiclesStock() {
-        return vehicleMapper.toDTO(vehicleRepository.findByDealIsNull());
-    }
-
     public VehicleDTO getVehicleById(Long id) {
         Optional<Vehicle> vehicle = vehicleRepository.findById(id);
 
@@ -40,5 +37,15 @@ public class VehicleService {
 
     public void createVehicle(@RequestBody @Valid CreateVehicleRequest vehicleRequest) {
         vehicleRepository.save(vehicleMapper.toEntity(vehicleRequest));
+    }
+
+    public void deleteVehicle(Long id) {
+        Optional<Vehicle> vehicle = vehicleRepository.findById(id);
+
+        if(vehicle.isEmpty()) {
+            throw new VehicleException("Não existe veículo com esse id!");
+        }
+
+        vehicleRepository.deleteById(id);
     }
 }

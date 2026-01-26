@@ -30,16 +30,19 @@ public class VehicleController {
         return vehicleService.getVehicleById(id);
     }
 
-    @GetMapping("/estoque")
-    public List<VehicleDTO> getVehiclesStock() {
-        return vehicleService.getVehiclesStock();
-    }
-
     @PostMapping
     @Transactional
     public ResponseEntity<String> createVehicle(@RequestBody @Valid CreateVehicleRequest vehicleRequest) {
         vehicleService.createVehicle(vehicleRequest);
 
         return ResponseEntity.status(HttpStatus.CREATED).body("Veículo cadastrado com sucesso!");
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity<String> deleteVehicle(@PathVariable Long id) {
+        vehicleService.deleteVehicle(id);
+
+        return ResponseEntity.status(HttpStatus.OK).body("Veículo deletado com sucesso!");
     }
 }
