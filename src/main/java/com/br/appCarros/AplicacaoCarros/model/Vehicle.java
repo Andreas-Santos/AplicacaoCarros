@@ -46,9 +46,6 @@ public class Vehicle {
     @NotBlank
     private String referenceMonth;
 
-    @OneToOne(mappedBy = "vehicle")
-    private Deal deal;
-
     public Vehicle() {}
 
     public Vehicle(Integer brandId, String brand, Integer modelId, String model, String yearId, String modelYear,
@@ -70,14 +67,6 @@ public class Vehicle {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Deal getDeal() {
-        return deal;
-    }
-
-    public void setDeal(Deal deal) {
-        this.deal = deal;
     }
 
     public String getReferenceMonth() {

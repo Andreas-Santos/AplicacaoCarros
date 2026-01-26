@@ -19,10 +19,8 @@ public interface CostumerMapper {
     List<CostumerDTO> toDTO(List<Costumer> costumers);
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "deals", ignore = true)
     Costumer toEntity(CreateCostumerRequest costumerRequest);
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "deals", ignore = true)
     List<Costumer> toEntity(List<CreateCostumerRequest> costumerRequest);
 }

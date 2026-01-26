@@ -20,9 +20,6 @@ public class Salesman {
     @Column(name = "data_inicial")
     private LocalDate initialDate = LocalDate.now();;
 
-    @OneToMany(mappedBy = "salesman", fetch = FetchType.EAGER)
-    private List<Deal> deals;
-
     public Salesman() {}
 
     public Salesman(String name) {
@@ -52,19 +49,6 @@ public class Salesman {
 
     public void setInitialDate(LocalDate initialDate) {
         this.initialDate = initialDate;
-    }
-
-    public List<Deal> getDeals() {
-        return deals;
-    }
-
-    public void setDeals(List<Deal> deals) {
-        this.deals = deals;
-    }
-
-    public void addDeal(Deal deal) {
-        deals.add(deal);
-        deal.setSalesman(this);
     }
 
     @Override

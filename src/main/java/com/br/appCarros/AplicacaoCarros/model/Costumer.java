@@ -22,9 +22,6 @@ public class Costumer {
     @Column(name = "numeroTelefone")
     private String phoneNumber;
 
-    @OneToMany(mappedBy = "costumer", fetch = FetchType.EAGER)
-    private List<Deal> deals = null;
-
     public Costumer() {}
 
     public Costumer(String name, String cpf, String email, String phoneNumber) {
@@ -72,19 +69,6 @@ public class Costumer {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public List<Deal> getDeals() {
-        return deals;
-    }
-
-    public void setDeals(List<Deal> deals) {
-        this.deals = deals;
-    }
-
-    public void addDeal(Deal deal) {
-        deals.add(deal);
-        deal.setCostumer(this);
     }
 
     @Override

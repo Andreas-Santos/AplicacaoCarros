@@ -20,11 +20,9 @@ public interface SalesmanMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "initialDate", ignore = true)
-    @Mapping(target = "deals", ignore = true)
     Salesman toEntity(CreateSalesmanRequest salesmanRequest);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "initialDate", ignore = true)
-    @Mapping(target = "deals", ignore = true)
     List<Salesman> toEntity(List<CreateSalesmanRequest> salesmanRequest);
 }

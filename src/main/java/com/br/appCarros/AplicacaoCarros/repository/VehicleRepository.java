@@ -9,6 +9,4 @@ import java.util.List;
 @Repository
 public interface VehicleRepository extends JpaRepository<Vehicle, Long> {
     Vehicle findByIdEquals(long vehicleId);
-
-    List<Vehicle> findByDealIsNull();
 }
