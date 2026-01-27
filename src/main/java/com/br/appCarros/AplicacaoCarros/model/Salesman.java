@@ -13,8 +13,7 @@ public class Salesman {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nome", nullable = false)
-    @NotBlank
+    @Column(name = "nome")
     private String name;
 
     @Column(name = "data_inicial")

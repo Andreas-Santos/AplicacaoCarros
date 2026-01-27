@@ -10,40 +10,31 @@ public class Vehicle {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "marca_id", nullable = false)
-    @NotBlank
+    @Column(name = "marca_id")
     private Integer brandId;
 
-    @Column(name = "marca", nullable = false)
-    @NotBlank
+    @Column(name = "marca")
     private String brand;
 
-    @Column(name = "modelo_id", nullable = false)
-    @NotBlank
+    @Column(name = "modelo_id")
     private Integer modelId;
 
-    @Column(name = "modelo", nullable = false)
-    @NotBlank
+    @Column(name = "modelo")
     private String model;
 
-    @Column(name = "ano_id", nullable = false)
-    @NotBlank
+    @Column(name = "ano_id")
     private String yearId;
 
-    @Column(name = "ano_modelo", nullable = false)
-    @NotBlank
+    @Column(name = "ano_modelo")
     private String modelYear;
 
-    @Column(name = "combustivel", nullable = false)
-    @NotBlank
+    @Column(name = "combustivel")
     private String fuel;
 
-    @Column(name = "preco", nullable = false)
-    @NotBlank
+    @Column(name = "preco")
     private String price;
 
-    @Column(name = "referencia_mes", nullable = false)
-    @NotBlank
+    @Column(name = "referencia_mes")
     private String referenceMonth;
 
     public Vehicle() {}

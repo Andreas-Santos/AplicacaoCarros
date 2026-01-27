@@ -11,10 +11,10 @@ public class Costumer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nome", nullable = false)
+    @Column(name = "nome")
     private String name;
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true)
     private String cpf;
 
     private String email;

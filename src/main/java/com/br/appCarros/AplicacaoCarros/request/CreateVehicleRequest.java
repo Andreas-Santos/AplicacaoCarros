@@ -1,14 +1,15 @@
 package com.br.appCarros.AplicacaoCarros.request;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public record CreateVehicleRequest(
-        @NotBlank(message = "O id da marca é obrigatório!")
-        Integer brandId,
+        @NotNull(message = "O id da marca é obrigatório!")
+        Long brandId,
         @NotBlank(message = "A marca é obrigatória!")
         String brand,
-        @NotBlank(message = "O id do modelo é obrigatório!")
-        Integer modelId,
+        @NotNull(message = "O id do modelo é obrigatório!")
+        Long modelId,
         @NotBlank(message = "O modelo é obrigatório!")
         String model,
         @NotBlank(message = "O id do ano é obrigatório!")
