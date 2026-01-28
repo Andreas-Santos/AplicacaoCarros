@@ -4,8 +4,8 @@ import com.br.appCarros.AplicacaoCarros.model.record.BrandData;
 import com.br.appCarros.AplicacaoCarros.model.record.ModelData;
 import com.br.appCarros.AplicacaoCarros.model.record.VehicleFipeData;
 import com.br.appCarros.AplicacaoCarros.model.record.YearData;
-import com.br.appCarros.AplicacaoCarros.service.API.ConvertData;
-import com.br.appCarros.AplicacaoCarros.service.API.FipeApi;
+import com.br.appCarros.AplicacaoCarros.service.Utils.ConvertData;
+import com.br.appCarros.AplicacaoCarros.service.Utils.FipeApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

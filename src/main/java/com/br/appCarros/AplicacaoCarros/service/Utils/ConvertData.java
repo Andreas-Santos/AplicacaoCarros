@@ -1,13 +1,13 @@
-package com.br.appCarros.AplicacaoCarros.service.API;
+package com.br.appCarros.AplicacaoCarros.service.Utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Service
+@Component
 public class ConvertData implements IConvertData {
     private final ObjectMapper mapper = new ObjectMapper();
 

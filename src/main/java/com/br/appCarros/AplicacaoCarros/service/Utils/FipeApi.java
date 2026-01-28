@@ -1,10 +1,12 @@
-package com.br.appCarros.AplicacaoCarros.service.API;
+package com.br.appCarros.AplicacaoCarros.service.Utils;
 
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class FipeApi {
-    ApiConsume apiConsumer = new ApiConsume();
+    @Autowired
+    ApiConsume apiConsumer;
 
     public FipeApi() {}
 
