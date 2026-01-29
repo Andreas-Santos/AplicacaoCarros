@@ -6,8 +6,6 @@ import com.br.appCarros.AplicacaoCarros.mapper.CostumerMapper;
 import com.br.appCarros.AplicacaoCarros.model.Costumer;
 import com.br.appCarros.AplicacaoCarros.repository.CostumerRepository;
 import com.br.appCarros.AplicacaoCarros.request.CreateCostumerRequest;
-import com.br.appCarros.AplicacaoCarros.service.Utils.CpfUtils;
-import com.br.appCarros.AplicacaoCarros.service.Utils.PhoneUtils;
 import com.br.appCarros.AplicacaoCarros.validation.Costumer.CostumerValidator;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

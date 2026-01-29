@@ -4,8 +4,6 @@ import com.br.appCarros.AplicacaoCarros.service.Utils.CpfUtils;
 import com.br.appCarros.AplicacaoCarros.service.Utils.PhoneUtils;
 import jakarta.persistence.*;
 
-import java.util.List;
-
 @Entity
 @Table(name = "Clientes")
 public class Costumer {
