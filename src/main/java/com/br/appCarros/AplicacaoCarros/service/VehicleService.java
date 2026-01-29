@@ -48,4 +48,15 @@ public class VehicleService {
 
         vehicleRepository.deleteById(id);
     }
+
+    public void updateVehicle(Long id, @Valid VehicleRequest vehicleRequest) {
+        Optional<Vehicle> vehicleOptional = vehicleRepository.findById(id);
+
+        if(vehicleOptional.isEmpty())
+            throw new VehicleException("Não existe veículo com esse id!");
+
+        Vehicle vehicle = vehicleOptional.get();
+
+        vehicle.updateVehicle(vehicleRequest);
+    }
 }

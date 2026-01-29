@@ -44,4 +44,14 @@ public class VehicleController {
 
         return ResponseEntity.status(HttpStatus.OK).body("Veículo deletado com sucesso!");
     }
+
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity<String> updateVehicle(
+            @PathVariable Long id,
+            @RequestBody @Valid VehicleRequest vehicleRequest) {
+        vehicleService.updateVehicle(id, vehicleRequest);
+
+        return ResponseEntity.status(HttpStatus.OK).body("Veículo alterado com sucesso!");
+    }
 }

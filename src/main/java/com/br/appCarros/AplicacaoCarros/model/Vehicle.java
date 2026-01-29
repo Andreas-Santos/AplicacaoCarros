@@ -1,7 +1,9 @@
 package com.br.appCarros.AplicacaoCarros.model;
 
+import com.br.appCarros.AplicacaoCarros.request.VehicleRequest;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "veículos")
@@ -11,13 +13,13 @@ public class Vehicle {
     private Long id;
 
     @Column(name = "marca_id")
-    private Integer brandId;
+    private Long brandId;
 
     @Column(name = "marca")
     private String brand;
 
     @Column(name = "modelo_id")
-    private Integer modelId;
+    private Long modelId;
 
     @Column(name = "modelo")
     private String model;
@@ -39,7 +41,7 @@ public class Vehicle {
 
     public Vehicle() {}
 
-    public Vehicle(Integer brandId, String brand, Integer modelId, String model, String yearId, String modelYear,
+    public Vehicle(Long brandId, String brand, Long modelId, String model, String yearId, String modelYear,
                     String fuel, String price, String referenceMonth) {
         this.brandId = brandId;
         this.brand = brand;
@@ -108,11 +110,11 @@ public class Vehicle {
         this.model = model;
     }
 
-    public Integer getModelId() {
+    public Long getModelId() {
         return modelId;
     }
 
-    public void setModelId(Integer modelId) {
+    public void setModelId(Long modelId) {
         this.modelId = modelId;
     }
 
@@ -124,12 +126,24 @@ public class Vehicle {
         this.brand = brand;
     }
 
-    public Integer getBrandId() {
+    public Long getBrandId() {
         return brandId;
     }
 
-    public void setBrandId(Integer brandId) {
+    public void setBrandId(Long brandId) {
         this.brandId = brandId;
+    }
+
+    public void updateVehicle(VehicleRequest vehicleRequest) {
+        this.brandId = vehicleRequest.brandId();
+        this.brand = vehicleRequest.brand();
+        this.modelId = vehicleRequest.modelId();
+        this.model = vehicleRequest.model();
+        this.yearId = vehicleRequest.yearId();
+        this.modelYear = vehicleRequest.modelYear();
+        this.fuel = vehicleRequest.fuel();
+        this.price = vehicleRequest.price();
+        this.referenceMonth = vehicleRequest.referenceMonth();
     }
 
     @Override
