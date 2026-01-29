@@ -1,8 +1,11 @@
 package com.br.appCarros.AplicacaoCarros.model;
 
+import com.br.appCarros.AplicacaoCarros.request.CostumerRequest;
 import com.br.appCarros.AplicacaoCarros.service.Utils.CpfUtils;
 import com.br.appCarros.AplicacaoCarros.service.Utils.PhoneUtils;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "Clientes")
@@ -77,6 +80,13 @@ public class Costumer {
 
     public void cleanPhone() {
         this.phoneNumber = PhoneUtils.cleanPhone(phoneNumber);
+    }
+
+    public void updateCostumer(CostumerRequest costumerRequest) {
+        this.name = costumerRequest.name();
+        this.cpf = costumerRequest.cpf();
+        this.email = costumerRequest.email();
+        this.phoneNumber = costumerRequest.phoneNumber();
     }
 
     @Override

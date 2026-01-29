@@ -43,4 +43,14 @@ public class CostumerController {
 
         return ResponseEntity.status(HttpStatus.OK).body("Cliente deletado com sucesso!");
     }
+
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity<String> updateCostumer(
+            @PathVariable Long id,
+            @RequestBody @Valid CostumerRequest costumerRequest) {
+        costumerService.updateCostumer(id, costumerRequest);
+
+        return ResponseEntity.status(HttpStatus.OK).body("Cliente alterado com sucesso!");
+    }
 }

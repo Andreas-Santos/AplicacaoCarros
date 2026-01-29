@@ -59,4 +59,17 @@ public class CostumerService {
 
         costumerRepository.deleteById(id);
     }
+
+    public void updateCostumer(Long id, @Valid CostumerRequest costumerRequest) {
+        validators.forEach(v -> v.validate(costumerRequest));
+
+        Optional<Costumer> costumerOptional = costumerRepository.findById(id);
+
+        if(costumerOptional.isEmpty())
+            throw new CostumerException("Não existe cliente com este id!");
+
+        Costumer costumer = costumerOptional.get();
+
+        costumer.updateCostumer(costumerRequest);
+    }
 }
