@@ -1,5 +1,7 @@
 package com.br.appCarros.AplicacaoCarros.model;
 
+import com.br.appCarros.AplicacaoCarros.service.Utils.CpfUtils;
+import com.br.appCarros.AplicacaoCarros.service.Utils.PhoneUtils;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -69,6 +71,14 @@ public class Costumer {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public void cleanCpf() {
+        this.cpf = CpfUtils.cleanCpf(cpf);
+    }
+
+    public void cleanPhone() {
+        this.phoneNumber = PhoneUtils.cleanPhone(phoneNumber);
     }
 
     @Override
