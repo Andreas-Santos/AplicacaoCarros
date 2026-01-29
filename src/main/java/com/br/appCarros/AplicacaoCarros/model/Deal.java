@@ -1,6 +1,8 @@
 package com.br.appCarros.AplicacaoCarros.model;
 
+import com.br.appCarros.AplicacaoCarros.request.DealRequest;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 
 import java.time.LocalDate;
 
@@ -85,5 +87,15 @@ public class Deal {
 
     public void setDealDate(LocalDate dealDate) {
         this.dealDate = dealDate;
+    }
+
+    public void updateDeal(@Valid DealRequest dealRequest) {
+
+    }
+
+    public void updateDeal(Vehicle vehicle, Salesman salesman, Costumer costumer) {
+        setVehicle(vehicle);
+        setSalesman(salesman);
+        setCostumer(costumer);
     }
 }

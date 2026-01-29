@@ -3,6 +3,7 @@ package com.br.appCarros.AplicacaoCarros.controller;
 import com.br.appCarros.AplicacaoCarros.dto.DealDTO;
 import com.br.appCarros.AplicacaoCarros.request.DealRequest;
 import com.br.appCarros.AplicacaoCarros.service.DealService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,5 +42,13 @@ public class DealController {
         dealService.deleteDeal(id);
 
         return ResponseEntity.status(HttpStatus.OK).body("Venda deletada com sucesso!");
+    }
+
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity<String> updateDeal(@PathVariable Long id, @RequestBody @Valid DealRequest dealRequest) {
+        dealService.updateDeal(id, dealRequest);
+
+        return ResponseEntity.status(HttpStatus.OK).body("Venda alterada com sucesso!");
     }
 }

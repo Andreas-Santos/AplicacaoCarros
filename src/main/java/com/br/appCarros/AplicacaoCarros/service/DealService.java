@@ -13,6 +13,7 @@ import com.br.appCarros.AplicacaoCarros.repository.SalesmanRepository;
 import com.br.appCarros.AplicacaoCarros.repository.VehicleRepository;
 import com.br.appCarros.AplicacaoCarros.request.DealRequest;
 import com.br.appCarros.AplicacaoCarros.validation.Deal.DealValidator;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -61,9 +62,7 @@ public class DealService {
 
         Deal deal = dealMapper.toEntity(dealRequest);
 
-        deal.setVehicle(vehicle);
-        deal.setSalesman(salesman);
-        deal.setCostumer(costumer);
+        deal.updateDeal(vehicle, salesman, costumer);
 
         dealRepository.save(deal);
     }
@@ -76,5 +75,22 @@ public class DealService {
         }
 
         dealRepository.deleteById(id);
+    }
+
+    public void updateDeal(Long id, @Valid DealRequest dealRequest) {
+        validators.forEach(v -> v.validate(dealRequest));
+
+        Optional<Deal> dealOptional = dealRepository.findById(id);
+
+        if(dealOptional.isEmpty())
+            throw new DealException("Não existe venda com esse id!");
+
+        Deal deal = dealOptional.get();
+
+        Vehicle vehicle = vehicleRepository.findByIdEquals(dealRequest.vehicleId());
+        Salesman salesman = salesmanRepository.findByIdEquals(dealRequest.salesmanId());
+        Costumer costumer = costumerRepository.findByIdEquals(dealRequest.costumerId());
+
+        deal.updateDeal(vehicle, salesman, costumer);
     }
 }

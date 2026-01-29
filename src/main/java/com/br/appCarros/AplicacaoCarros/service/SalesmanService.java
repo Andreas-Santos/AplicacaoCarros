@@ -57,6 +57,6 @@ public class SalesmanService {
 
         Salesman salesman = salesmanOptional.get();
 
-        salesman.setName(salesmanRequest.name());
+        salesman.updateSalesman(salesmanRequest);
     }
 }

@@ -1,5 +1,6 @@
 package com.br.appCarros.AplicacaoCarros.model;
 
+import com.br.appCarros.AplicacaoCarros.request.SalesmanRequest;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
@@ -48,6 +49,10 @@ public class Salesman {
 
     public void setInitialDate(LocalDate initialDate) {
         this.initialDate = initialDate;
+    }
+
+    public void updateSalesman(SalesmanRequest salesmanRequest) {
+        this.name = salesmanRequest.name();
     }
 
     @Override
