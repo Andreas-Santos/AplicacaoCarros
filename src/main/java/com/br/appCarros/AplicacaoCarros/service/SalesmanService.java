@@ -48,4 +48,15 @@ public class SalesmanService {
 
         salesmanRepository.deleteById(id);
     }
+
+    public void updateSalesman(Long id, @RequestBody @Valid CreateSalesmanRequest salesmanRequest) {
+        Optional<Salesman> salesmanOptional = salesmanRepository.findById(id);
+
+        if(salesmanOptional.isEmpty())
+            throw new SalesmanException("Não existe vendedor com esse id!");
+
+        Salesman salesman = salesmanOptional.get();
+
+        salesman.setName(salesmanRequest.name());
+    }
 }

@@ -13,9 +13,7 @@ import com.br.appCarros.AplicacaoCarros.repository.SalesmanRepository;
 import com.br.appCarros.AplicacaoCarros.repository.VehicleRepository;
 import com.br.appCarros.AplicacaoCarros.request.CreateDealRequest;
 import com.br.appCarros.AplicacaoCarros.validation.Deal.DealValidator;
-import com.br.appCarros.AplicacaoCarros.validation.Deal.VehicleValidator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
