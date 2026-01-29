@@ -12,6 +12,8 @@ import com.br.appCarros.AplicacaoCarros.repository.DealRepository;
 import com.br.appCarros.AplicacaoCarros.repository.SalesmanRepository;
 import com.br.appCarros.AplicacaoCarros.repository.VehicleRepository;
 import com.br.appCarros.AplicacaoCarros.request.CreateDealRequest;
+import com.br.appCarros.AplicacaoCarros.validation.Deal.DealValidator;
+import com.br.appCarros.AplicacaoCarros.validation.Deal.VehicleValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -36,6 +38,9 @@ public class DealService {
     @Autowired
     DealMapper dealMapper;
 
+    @Autowired
+    List<DealValidator> validators;
+
     public List<DealDTO> getDeals() {
         return dealMapper.toDTO(dealRepository.findAll());
     }
@@ -50,6 +55,8 @@ public class DealService {
     }
 
     public void createDeal(CreateDealRequest dealRequest) {
+        validators.forEach(v -> v.validate(dealRequest));
+
         Vehicle vehicle = vehicleRepository.findByIdEquals(dealRequest.vehicleId());
         Salesman salesman = salesmanRepository.findByIdEquals(dealRequest.salesmanId());
         Costumer costumer = costumerRepository.findByIdEquals(dealRequest.costumerId());
