@@ -5,7 +5,7 @@ import com.br.appCarros.AplicacaoCarros.exception.VehicleException;
 import com.br.appCarros.AplicacaoCarros.mapper.VehicleMapper;
 import com.br.appCarros.AplicacaoCarros.model.Vehicle;
 import com.br.appCarros.AplicacaoCarros.repository.VehicleRepository;
-import com.br.appCarros.AplicacaoCarros.request.CreateVehicleRequest;
+import com.br.appCarros.AplicacaoCarros.request.VehicleRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,7 +35,7 @@ public class VehicleService {
         return null;
     };
 
-    public void createVehicle(@RequestBody @Valid CreateVehicleRequest vehicleRequest) {
+    public void createVehicle(@RequestBody @Valid VehicleRequest vehicleRequest) {
         vehicleRepository.save(vehicleMapper.toEntity(vehicleRequest));
     }
 

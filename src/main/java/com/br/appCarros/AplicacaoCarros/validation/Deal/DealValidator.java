@@ -1,7 +1,7 @@
 package com.br.appCarros.AplicacaoCarros.validation.Deal;
 
-import com.br.appCarros.AplicacaoCarros.request.CreateDealRequest;
+import com.br.appCarros.AplicacaoCarros.request.DealRequest;
 
 public interface DealValidator {
-    void validate(CreateDealRequest dealRequest);
+    void validate(DealRequest dealRequest);
 }

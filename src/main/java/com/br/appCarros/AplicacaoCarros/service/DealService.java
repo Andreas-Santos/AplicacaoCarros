@@ -11,7 +11,7 @@ import com.br.appCarros.AplicacaoCarros.repository.CostumerRepository;
 import com.br.appCarros.AplicacaoCarros.repository.DealRepository;
 import com.br.appCarros.AplicacaoCarros.repository.SalesmanRepository;
 import com.br.appCarros.AplicacaoCarros.repository.VehicleRepository;
-import com.br.appCarros.AplicacaoCarros.request.CreateDealRequest;
+import com.br.appCarros.AplicacaoCarros.request.DealRequest;
 import com.br.appCarros.AplicacaoCarros.validation.Deal.DealValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,7 +52,7 @@ public class DealService {
         return null;
     }
 
-    public void createDeal(CreateDealRequest dealRequest) {
+    public void createDeal(DealRequest dealRequest) {
         validators.forEach(v -> v.validate(dealRequest));
 
         Vehicle vehicle = vehicleRepository.findByIdEquals(dealRequest.vehicleId());

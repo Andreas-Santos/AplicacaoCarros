@@ -2,7 +2,7 @@ package com.br.appCarros.AplicacaoCarros.request;
 
 import jakarta.validation.constraints.NotNull;
 
-public record CreateDealRequest(
+public record DealRequest(
         @NotNull(message = "O id do veículo é obrigatório!")
         Long vehicleId,
         @NotNull(message = "O id do vendedor é obrigatório!")

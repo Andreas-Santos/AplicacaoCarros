@@ -2,7 +2,7 @@ package com.br.appCarros.AplicacaoCarros.request;
 
 import jakarta.validation.constraints.NotBlank;
 
-public record CreateCostumerRequest(
+public record CostumerRequest(
         @NotBlank(message = "Nome é obrigatório")
         String name,
         @NotBlank(message = "CPF é obrigatório")

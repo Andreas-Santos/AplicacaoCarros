@@ -3,7 +3,7 @@ package com.br.appCarros.AplicacaoCarros.validation.Deal;
 import com.br.appCarros.AplicacaoCarros.exception.DealException;
 import com.br.appCarros.AplicacaoCarros.model.Salesman;
 import com.br.appCarros.AplicacaoCarros.repository.SalesmanRepository;
-import com.br.appCarros.AplicacaoCarros.request.CreateDealRequest;
+import com.br.appCarros.AplicacaoCarros.request.DealRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +15,7 @@ public class SalesmanValidator implements DealValidator {
     SalesmanRepository salesmanRepository;
 
     @Override
-    public void validate(CreateDealRequest dealRequest) {
+    public void validate(DealRequest dealRequest) {
         Optional<Salesman> salesman = salesmanRepository.findById(dealRequest.salesmanId());
 
         if(salesman.isEmpty())

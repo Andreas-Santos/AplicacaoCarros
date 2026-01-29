@@ -5,7 +5,7 @@ import com.br.appCarros.AplicacaoCarros.exception.SalesmanException;
 import com.br.appCarros.AplicacaoCarros.mapper.SalesmanMapper;
 import com.br.appCarros.AplicacaoCarros.model.Salesman;
 import com.br.appCarros.AplicacaoCarros.repository.SalesmanRepository;
-import com.br.appCarros.AplicacaoCarros.request.CreateSalesmanRequest;
+import com.br.appCarros.AplicacaoCarros.request.SalesmanRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,7 +35,7 @@ public class SalesmanService {
         return null;
     }
 
-    public void createSalesman(@RequestBody @Valid CreateSalesmanRequest salesmanRequest) {
+    public void createSalesman(@RequestBody @Valid SalesmanRequest salesmanRequest) {
         salesmanRepository.save(salesmanMapper.toEntity(salesmanRequest));
     }
 
@@ -49,7 +49,7 @@ public class SalesmanService {
         salesmanRepository.deleteById(id);
     }
 
-    public void updateSalesman(Long id, @RequestBody @Valid CreateSalesmanRequest salesmanRequest) {
+    public void updateSalesman(Long id, @RequestBody @Valid SalesmanRequest salesmanRequest) {
         Optional<Salesman> salesmanOptional = salesmanRepository.findById(id);
 
         if(salesmanOptional.isEmpty())

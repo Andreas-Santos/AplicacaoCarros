@@ -1,11 +1,11 @@
 package com.br.appCarros.AplicacaoCarros.validation.Costumer;
 
-import com.br.appCarros.AplicacaoCarros.request.CreateCostumerRequest;
+import com.br.appCarros.AplicacaoCarros.request.CostumerRequest;
 import org.springframework.stereotype.Component;
 
 @Component
 public interface CostumerValidator {
 
-    void validate(CreateCostumerRequest costumerRequest);
+    void validate(CostumerRequest costumerRequest);
 
 }

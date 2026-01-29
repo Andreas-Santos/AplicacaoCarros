@@ -2,7 +2,7 @@ package com.br.appCarros.AplicacaoCarros.mapper;
 
 import com.br.appCarros.AplicacaoCarros.dto.VehicleDTO;
 import com.br.appCarros.AplicacaoCarros.model.Vehicle;
-import com.br.appCarros.AplicacaoCarros.request.CreateVehicleRequest;
+import com.br.appCarros.AplicacaoCarros.request.VehicleRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
@@ -19,8 +19,8 @@ public interface VehicleMapper {
     List<VehicleDTO> toDTO(List<Vehicle> vehicles);
 
     @Mapping(target = "id", ignore = true)
-    Vehicle toEntity(CreateVehicleRequest vehicleRequest);
+    Vehicle toEntity(VehicleRequest vehicleRequest);
 
     @Mapping(target = "id", ignore = true)
-    List<Vehicle> toEntity(List<CreateVehicleRequest> vehicleRequest);
+    List<Vehicle> toEntity(List<VehicleRequest> vehicleRequest);
 }

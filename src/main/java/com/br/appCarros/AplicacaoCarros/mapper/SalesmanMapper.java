@@ -2,7 +2,7 @@ package com.br.appCarros.AplicacaoCarros.mapper;
 
 import com.br.appCarros.AplicacaoCarros.dto.SalesmanDTO;
 import com.br.appCarros.AplicacaoCarros.model.Salesman;
-import com.br.appCarros.AplicacaoCarros.request.CreateSalesmanRequest;
+import com.br.appCarros.AplicacaoCarros.request.SalesmanRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
@@ -20,9 +20,9 @@ public interface SalesmanMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "initialDate", ignore = true)
-    Salesman toEntity(CreateSalesmanRequest salesmanRequest);
+    Salesman toEntity(SalesmanRequest salesmanRequest);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "initialDate", ignore = true)
-    List<Salesman> toEntity(List<CreateSalesmanRequest> salesmanRequest);
+    List<Salesman> toEntity(List<SalesmanRequest> salesmanRequest);
 }

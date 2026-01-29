@@ -1,7 +1,7 @@
 package com.br.appCarros.AplicacaoCarros.controller;
 
 import com.br.appCarros.AplicacaoCarros.dto.DealDTO;
-import com.br.appCarros.AplicacaoCarros.request.CreateDealRequest;
+import com.br.appCarros.AplicacaoCarros.request.DealRequest;
 import com.br.appCarros.AplicacaoCarros.service.DealService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,7 +29,7 @@ public class DealController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<String> createDeal(@RequestBody CreateDealRequest dealRequest) {
+    public ResponseEntity<String> createDeal(@RequestBody DealRequest dealRequest) {
         dealService.createDeal(dealRequest);
 
         return ResponseEntity.status(HttpStatus.CREATED).body("Venda criada com sucesso!");

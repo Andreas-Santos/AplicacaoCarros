@@ -1,8 +1,7 @@
 package com.br.appCarros.AplicacaoCarros.controller;
 
 import com.br.appCarros.AplicacaoCarros.dto.VehicleDTO;
-import com.br.appCarros.AplicacaoCarros.model.Vehicle;
-import com.br.appCarros.AplicacaoCarros.request.CreateVehicleRequest;
+import com.br.appCarros.AplicacaoCarros.request.VehicleRequest;
 import com.br.appCarros.AplicacaoCarros.service.VehicleService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -32,7 +31,7 @@ public class VehicleController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<String> createVehicle(@RequestBody @Valid CreateVehicleRequest vehicleRequest) {
+    public ResponseEntity<String> createVehicle(@RequestBody @Valid VehicleRequest vehicleRequest) {
         vehicleService.createVehicle(vehicleRequest);
 
         return ResponseEntity.status(HttpStatus.CREATED).body("Veículo cadastrado com sucesso!");

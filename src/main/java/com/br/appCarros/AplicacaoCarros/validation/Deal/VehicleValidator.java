@@ -4,7 +4,7 @@ import com.br.appCarros.AplicacaoCarros.exception.DealException;
 import com.br.appCarros.AplicacaoCarros.model.Vehicle;
 import com.br.appCarros.AplicacaoCarros.repository.DealRepository;
 import com.br.appCarros.AplicacaoCarros.repository.VehicleRepository;
-import com.br.appCarros.AplicacaoCarros.request.CreateDealRequest;
+import com.br.appCarros.AplicacaoCarros.request.DealRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +19,7 @@ public class VehicleValidator implements DealValidator{
     DealRepository dealRepository;
 
     @Override
-    public void validate(CreateDealRequest dealRequest) {
+    public void validate(DealRequest dealRequest) {
         Optional<Vehicle> vehicle = vehicleRepository.findById(dealRequest.vehicleId());
 
         if(vehicle.isEmpty())

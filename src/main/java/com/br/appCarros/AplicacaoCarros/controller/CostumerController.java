@@ -1,7 +1,7 @@
 package com.br.appCarros.AplicacaoCarros.controller;
 
 import com.br.appCarros.AplicacaoCarros.dto.CostumerDTO;
-import com.br.appCarros.AplicacaoCarros.request.CreateCostumerRequest;
+import com.br.appCarros.AplicacaoCarros.request.CostumerRequest;
 import com.br.appCarros.AplicacaoCarros.service.CostumerService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -30,7 +30,7 @@ public class CostumerController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<String> createCostumer(@RequestBody @Valid CreateCostumerRequest costumerRequest) {
+    public ResponseEntity<String> createCostumer(@RequestBody @Valid CostumerRequest costumerRequest) {
         costumerService.createCostumer(costumerRequest);
 
         return ResponseEntity.status(HttpStatus.CREATED).body("Cliente cadastrado com sucesso!!");

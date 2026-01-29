@@ -5,7 +5,7 @@ import com.br.appCarros.AplicacaoCarros.exception.CostumerException;
 import com.br.appCarros.AplicacaoCarros.mapper.CostumerMapper;
 import com.br.appCarros.AplicacaoCarros.model.Costumer;
 import com.br.appCarros.AplicacaoCarros.repository.CostumerRepository;
-import com.br.appCarros.AplicacaoCarros.request.CreateCostumerRequest;
+import com.br.appCarros.AplicacaoCarros.request.CostumerRequest;
 import com.br.appCarros.AplicacaoCarros.validation.Costumer.CostumerValidator;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +39,7 @@ public class CostumerService {
         return null;
     }
 
-    public void createCostumer(@RequestBody @Valid CreateCostumerRequest costumerRequest) {
+    public void createCostumer(@RequestBody @Valid CostumerRequest costumerRequest) {
         validators.forEach(v -> v.validate(costumerRequest));
 
         Costumer costumer = costumerMapper.toEntity(costumerRequest);
