@@ -26,7 +26,7 @@ public class CpfUtils {
 
         int sum = 0;
         for(int i = 0; i < 9; i++) {
-            sum += Character.getNumericValue(cleanedCpf.charAt(i) * (10 - i));
+            sum += Character.getNumericValue(cleanedCpf.charAt(i)) * (10 - i);
         }
 
         int digit1 = (sum * 10) % 11;
@@ -34,7 +34,7 @@ public class CpfUtils {
 
         sum = 0;
         for(int i = 0; i < 10; i++) {
-            sum += Character.getNumericValue(cleanedCpf.charAt(i) * (11 - i));
+            sum += Character.getNumericValue(cleanedCpf.charAt(i)) * (11 - i);
         }
 
         int digit2 = (sum * 10) % 11;
