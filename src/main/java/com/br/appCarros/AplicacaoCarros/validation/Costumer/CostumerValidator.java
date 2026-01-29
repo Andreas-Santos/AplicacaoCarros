@@ -4,6 +4,6 @@ import com.br.appCarros.AplicacaoCarros.request.CreateCostumerRequest;
 
 public interface CostumerValidator {
 
-    boolean validate(CreateCostumerRequest costumerRequest);
+    void validate(CreateCostumerRequest costumerRequest);
 
 }
