@@ -1,6 +1,5 @@
 package com.br.appCarros.AplicacaoCarros.service;
 
-import com.br.appCarros.AplicacaoCarros.exception.CostumerException;
 import com.br.appCarros.AplicacaoCarros.exception.SalesmanException;
 import com.br.appCarros.AplicacaoCarros.mapper.SalesmanMapper;
 import com.br.appCarros.AplicacaoCarros.model.Salesman;
